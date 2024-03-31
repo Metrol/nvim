@@ -14,7 +14,7 @@ return {
                 },
             },
             preview_window = {
-                auto_preview = true,
+                auto_preview = false,
             },
         })
     end,
