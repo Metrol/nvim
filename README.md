@@ -33,21 +33,27 @@ To get things looking right, [Nerd Fonts](https://www.nerdfonts.com/) are requir
 The order of these plugins tracks on the videos that [typecraft](https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn) presented in his video series.  I've since added a few to the mix, and will likely continue to do so, while tweaking things into place.
 
 Likely, the most important plugin is the tool that manages all the other plugins.
+
 [Lazy Plugin Manager](https://github.com/folke/lazy.nvim)
 
 Quickly find files, and search within files.  This is where `ripgrep` is needed.
+
 [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 
 Syntax highlights
+
 [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 Tree style file browser
+
 [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)
 
 Fancy, and informative, status bar
+
 [Lualine](https://github.com/nvim-lualine/lualine.nvim)
 
 LSP Related.  There are a bunch here that all interact with each other.
+
 [Mason](https://github.com/williamboman/mason.nvim)
 [Mason LSPConfig](https://github.com/williamboman/mason-lspconfig.nvim)
 [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
@@ -55,9 +61,11 @@ LSP Related.  There are a bunch here that all interact with each other.
 [None-LS](https://github.com/nvimtools/none-ls.nvim)
 
 File tabs, making dealing with multiple files easier to visualize
+
 [barbar](https://github.com/romgrk/barbar.nvim)
 
 Code Structure outline
+
 [Outline](https://github.com/hedyhli/outline.nvim)
 
 # Still To Do
