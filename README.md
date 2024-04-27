@@ -68,6 +68,9 @@ Code Structure outline
 
 [Outline](https://github.com/hedyhli/outline.nvim)
 
+Ability to quickly toggle code comments
+[numToStr/Comment](https://neovimcraft.com/plugin/numToStr/Comment.nvim)
+
 # Still To Do
 I haven't worked debugging tools into the mix just yet.  Trying to get comfortable with all of these other tools first.
 
