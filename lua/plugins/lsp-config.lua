@@ -54,10 +54,10 @@ return {
             vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 
             -- Commands that don't seem to do anything with intelephense
-            -- vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, {}) -- doesn't work
-            -- vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, {}) -- doesn't work
-            -- vim.keymap.set('n', '<leader>gK', vim.lsp.buf.signature_help, {}) -- doesn't work
-            -- vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, {}) -- Nope
+            vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, {}) -- doesn't work
+            vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, {}) -- doesn't work
+            vim.keymap.set('n', '<leader>gK', vim.lsp.buf.signature_help, {}) -- doesn't work
+            vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, {}) -- Nope
             -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {}) -- Don't trust it
         end,
     },

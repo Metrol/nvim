@@ -14,3 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 require("vim-options")
 require("lazy").setup("plugins")
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "php",
+    command = "setlocal autoindent smartindent indentexpr="
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "js",
+    command = "setlocal autoindent smartindent indentexpr="
+})
