@@ -13,6 +13,7 @@ return {
                     "lua_ls",
                     "tsserver",
                     "bashls",
+                    "gopls",
                     "intelephense",
                 },
             })
@@ -38,6 +39,9 @@ return {
                 capabilities = capabilities,
             })
             lspconfig.bashls.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.gopls.setup({
                 capabilities = capabilities,
             })
             lspconfig.intelephense.setup({
