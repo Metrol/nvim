@@ -11,7 +11,7 @@ return {
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",
-                    "tsserver",
+                    "ts_ls",
                     "bashls",
                     "intelephense",
                 },
@@ -34,7 +34,7 @@ return {
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
             })
-            lspconfig.tsserver.setup({
+            lspconfig.ts_ls.setup({
                 capabilities = capabilities,
             })
             lspconfig.bashls.setup({
