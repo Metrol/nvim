@@ -11,7 +11,10 @@ return {
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",
+<<<<<<< HEAD
                     "ts_ls",
+=======
+>>>>>>> f3f4b1755689890d42626911af3281992898280a
                     "bashls",
                     "gopls",
                     "intelephense",

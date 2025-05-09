@@ -5,7 +5,7 @@ return {
         local config = require("nvim-treesitter.configs")
         config.setup({
             auto_install = true,
-            ensure_installed = {"php"},
+            ensure_installed = {"php", "javascript"},
             sync_install = false,
 
             highlight = {
