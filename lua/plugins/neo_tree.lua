@@ -12,14 +12,14 @@ return {
 --        vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>')
         require("neo-tree").setup({
 --             Automatically close tree view after file selected
---            event_handlers = {
---               {
---                    event = "file_opened",
---                    handler = function()
---                        require("neo-tree.command").execute({ action = "close" })
---                    end
---                }
---            },
+           event_handlers = {
+              {
+                   event = "file_opened",
+                   handler = function()
+                       require("neo-tree.command").execute({ action = "close" })
+                   end
+               }
+           },
            {
                close_if_last_window = false
            }
