@@ -12,5 +12,7 @@ return {
                 update_root = true
             },
         })
+        -- require('telescope').load_extensions('projects')
     end,
+
 }
