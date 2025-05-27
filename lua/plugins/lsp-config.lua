@@ -51,6 +51,20 @@ return {
                 },
             })
 
+            vim.api.nvim_create_autocmd("LspAttach", {
+                desc = "use lsp folding",
+                callback = function(event)
+                local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+
+                if not client:supports_method("textDocument/foldingRange") then
+                    return
+                end
+
+                local win = vim.api.nvim_get_current_win()
+                vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+                end,
+            })
+
             vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = "Go to Definition"})
             vim.keymap.set('n', '<leader>gk', vim.lsp.buf.hover, { desc = "Show Description" })
             -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, {})
