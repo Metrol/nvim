@@ -2,7 +2,7 @@ return {
     "hedyhli/outline.nvim",
     opts = {},
     config = function()
-        vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+        vim.keymap.set("n", "<leader>o", "<cmd>OutlineOpen<CR>", { desc = "Open Code Outline" })
         require('outline').setup({
             outline_items = {
                 show_symbol_lineno = true,
