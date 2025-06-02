@@ -34,6 +34,13 @@ return {
       desc = 'Debug: Start/Continue',
     },
     {
+      '<leader>dS',
+      function()
+        require('dap').disconnect()
+      end,
+      desc = 'Debug: Disconnect',
+    },
+    {
       '<F1>',
       function()
         require('dap').step_into()
