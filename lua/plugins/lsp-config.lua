@@ -67,15 +67,15 @@ return {
 
             vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = "Go to Definition"})
             vim.keymap.set('n', '<leader>gk', vim.lsp.buf.hover, { desc = "Show Description" })
-            -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, {})
             vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Find Uses" })
-            -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+            vim.keymap.set('n', '<space>ga', vim.lsp.buf.code_action, { desc = "Code Action" })
+            vim.keymap.set({ "n", "v" }, "<leader>ga", vim.lsp.buf.code_action, { desc = "Code Action" })
 
             -- Commands that don't seem to do anything with intelephense
-            -- vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, {}) -- doesn't work
-            -- vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, {}) -- doesn't work
-            -- vim.keymap.set('n', '<leader>gK', vim.lsp.buf.signature_help, {}) -- doesn't work
-            -- vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, {}) -- Nope
+            vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = "Declaration" }) -- doesn't work
+            vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = "Implimentation" }) -- doesn't work
+            vim.keymap.set('n', '<leader>gK', vim.lsp.buf.signature_help, { desc = "Signature Help" }) -- doesn't work
+            vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = "Type Definition" }) -- Nope
             -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {}) -- Don't trust it
         end,
     },
