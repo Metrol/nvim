@@ -4,6 +4,9 @@ return {
     config = function()
         vim.keymap.set("n", "<leader>o", "<cmd>OutlineOpen<CR>", { desc = "Open Code Outline" })
         require('outline').setup({
+            outline_window = {
+                auto_close = true,
+            },
             outline_items = {
                 show_symbol_lineno = true,
             },
@@ -14,7 +17,7 @@ return {
                 },
             },
             preview_window = {
-                auto_preview = false,
+                auto_preview = true,
             },
         })
     end,
