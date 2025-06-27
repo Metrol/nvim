@@ -1,10 +1,17 @@
+-- return {
+--     "ellisonleao/gruvbox.nvim",
+--     name = "gruvbox",
+--     priority = 1000,
+--     config = function()
+--         vim.cmd.colorscheme "gruvbox"
+--     end
+-- }
+
 return {
-    -- "doums/darcula",
-    "ellisonleao/gruvbox.nvim",
-    name = "gruvbox",
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     config = function()
-        vim.cmd.colorscheme "gruvbox"
+        vim.cmd.colorscheme "catppuccin"
     end
 }
-
