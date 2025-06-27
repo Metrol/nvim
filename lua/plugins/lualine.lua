@@ -4,7 +4,16 @@ return {
     config = function()
         require('lualine').setup({
             options = {
-                theme = 'gruvbox'
+                -- theme = 'gruvbox'
+                theme = 'catppuccin'
+            },
+            sections = {
+                lualine_a = {
+                    {
+                        'filename',
+                        path = 1
+                    }
+                }
             }
         })
     end
