@@ -12,7 +12,7 @@ return {
             -- Outline View
             vim.keymap.set('n', '<leader>fo', builtin.treesitter, { desc = 'Tree Sitter' })
             vim.keymap.set('n', '<leader>fp', function() vim.cmd [[Telescope neoclip]] end, { desc = 'Neo Clip History' })
-            vim.keymap.set('n', '<leader>ge', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Code Errors' })
+            vim.keymap.set('n', '<leader>de', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Code Errors' })
         end
     },
     {
