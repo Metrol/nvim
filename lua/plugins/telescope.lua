@@ -11,6 +11,8 @@ return {
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Help Tags' })
             -- Outline View
             vim.keymap.set('n', '<leader>fo', builtin.treesitter, { desc = 'Tree Sitter' })
+            vim.keymap.set('n', '<leader>fm', builtin.marks, { desc = 'Marks' })
+            vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'Registers' })
             vim.keymap.set('n', '<leader>fp', function() vim.cmd [[Telescope neoclip]] end, { desc = 'Neo Clip History' })
             vim.keymap.set('n', '<leader>de', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Code Errors' })
         end
