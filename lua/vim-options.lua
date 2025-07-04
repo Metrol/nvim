@@ -19,6 +19,14 @@ vim.opt.sidescrolloff = 8				-- scroll page when cursor is 8 spaces from left/ri
 vim.opt.splitbelow = true				-- split go below
 vim.opt.splitright = true				-- vertical split to the right
 
+-- Code folding options
+vim.opt.foldcolumn = '1'
+vim.opt.foldlevel  = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+
 -- Functional wrapper for mapping custom keybindings
 function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
