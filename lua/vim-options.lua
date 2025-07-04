@@ -1,3 +1,17 @@
+-- 
+-- Metrol NeoVim never ending configuration
+--
+
+--
+-- Functional wrapper for mapping custom keybindings
+function map(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
@@ -26,18 +40,12 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
-
--- Functional wrapper for mapping custom keybindings
-function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+map('n', '-', '<cmd>foldclose<CR>', { desc = 'Close code fold' })
+map('n', '+', '<cmd>foldopen<CR>', { desc = 'Open code fold' })
 
 -- Visual Maps
 map("v", "<leader>r", "\"hy:%s/<C-r>h//g<left><left>", {desc = "Replace all instances of highlighted" })
 map("v", "<C-s>", ":sort<CR>", {desc = "Sort highlighted text"})
 map("v", "J", ":m '>+1<CR>gv=gv", {desc = "Move current line down"})
 map("v", "K", ":m '>-2<CR>gv=gv", {desc = "Move current line up"})
+
