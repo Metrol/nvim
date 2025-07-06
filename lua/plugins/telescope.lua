@@ -16,7 +16,15 @@ return {
             vim.keymap.set('n', '<leader>fv', function() vim.cmd [[Telescope neoclip initial_mode=normal]] end, { desc = 'Clipboard History' })
             vim.keymap.set('n', '<leader>fp', function() vim.cmd [[Telescope projects initial_mode=normal]] end, { desc = 'Project Picker' })
             vim.keymap.set('n', '<leader>de', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Code Errors' })
-        end
+        end,
+        require('telescope').setup(
+        {
+            pickers = {
+                buffers   = { initial_mode = 'normal' },
+                marks     = { initial_mode = 'normal' },
+                registers = { initial_mode = 'normal' },
+            }
+        }),
     },
     {
         "nvim-telescope/telescope-ui-select.nvim",
