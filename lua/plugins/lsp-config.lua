@@ -14,7 +14,8 @@ return {
                     "ts_ls",
                     "bashls",
                     "gopls",
-                    "intelephense",
+                    "phpactor"
+                    -- "intelephense",
                 },
             })
         end,
@@ -44,12 +45,12 @@ return {
             lspconfig.gopls.setup({
                 capabilities = capabilities,
             })
-            lspconfig.intelephense.setup({
-                capabilities = capabilities,
-                init_options = {
-                    licenseKey = get_intelephense_license(),
-                },
-            })
+            -- lspconfig.intelephense.setup({
+            --     capabilities = capabilities,
+            --     init_options = {
+            --         licenseKey = get_intelephense_license(),
+            --     },
+            -- })
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 desc = "use lsp folding",
