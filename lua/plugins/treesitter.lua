@@ -51,13 +51,17 @@ return {
                                 query = "@parameter.inner",
                                 desc = "Parameter/Argument"
                             },
+                            ["ac"] = {
+                                query = "@comment.outer",
+                                desc = "Comment"
+                            },
                         },
                         selection_modes = {
                             ['@parameter.outer'] = 'v', -- charwise
                             ['@function.outer'] = 'v', -- linewise
                             ['@class.outer'] = '<c-v>', -- blockwise
                         },
-                        include_surrounding_whitespace = true,
+                        include_surrounding_whitespace = false,
                     }
                 }
             })
