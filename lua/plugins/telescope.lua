@@ -15,7 +15,7 @@ return {
             vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'Registers' })
             vim.keymap.set('n', '<leader>fv', function() vim.cmd [[Telescope neoclip initial_mode=normal]] end, { desc = 'Clipboard History' })
             vim.keymap.set('n', '<leader>fp', function() vim.cmd [[Telescope projects initial_mode=normal]] end, { desc = 'Project Picker' })
-            vim.keymap.set('n', '<leader>de', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Code Errors' })
+            vim.keymap.set('n', '<leader>xe', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Code Errors (Telescope)' })
         end,
         require('telescope').setup(
         {

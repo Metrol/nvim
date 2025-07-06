@@ -10,6 +10,7 @@ return {
                 { "<leader>f", group = "Finders" },
                 { "<leader>g", group = "LSP Functions" },
                 { "<leader>w", group = "Windowing" },
+                { "<leader>x", group = "Diagnostics" },
             }
         }
     },
