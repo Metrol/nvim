@@ -44,7 +44,7 @@ vim.opt.splitright = true				-- vertical split to the right
 
 -- Diagnostics display
 vim.diagnostic.config({
-    virtual_lines = true
+    virtual_lines = false
 })
 
 -- Code folding options
