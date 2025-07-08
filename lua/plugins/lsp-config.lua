@@ -4,13 +4,27 @@ return {
         dependencies = { 'saghen/blink.cmp' },
         config = function()
 
+        local get_intelephense_license = function()
+            local f = assert(io.open(os.getenv("HOME") .. "/.config/intelephense/license.txt", "rb"))
+            local content = f:read("*a")
+            f:close()
+            return string.gsub(content, "%s+", "")
+        end
+
         local lspconfig = require("lspconfig")
 	    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
             lspconfig.lua_ls.setup({ capabilities = capabilities })
             lspconfig.ts_ls.setup({ capabilities = capabilities })
-            lspconfig.phpactor.setup({ capabilities = capabilities })
+            -- lspconfig.phpactor.setup({ capabilities = capabilities })
             lspconfig.gopls.setup({ capabilities = capabilities })
+
+            lspconfig.intelephense.setup({
+                capabilities = capabilities,
+                init_options = {
+                    licenseKey = get_intelephense_license(),
+                },
+            })
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 desc = "use lsp folding",
