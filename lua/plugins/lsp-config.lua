@@ -74,7 +74,7 @@ return {
 
             -- Commands that don't seem to do anything with intelephense
             vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = "Declaration" }) -- doesn't work
-            vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = "Implimentation" }) -- doesn't work
+            vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = "Implementation" }) -- doesn't work
             vim.keymap.set('n', '<leader>gK', vim.lsp.buf.signature_help, { desc = "Signature Help" }) -- doesn't work
             vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = "Type Definition" }) -- Nope
             -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {}) -- Don't trust it
