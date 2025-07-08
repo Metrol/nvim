@@ -33,6 +33,11 @@ vim.opt.sidescrolloff = 8				-- scroll page when cursor is 8 spaces from left/ri
 vim.opt.splitbelow = true				-- split go below
 vim.opt.splitright = true				-- vertical split to the right
 
+-- Diagnostics display
+vim.diagnostic.config({
+    virtual_lines = true
+})
+
 -- Code folding options
 vim.opt.foldcolumn = '1'
 vim.opt.foldlevel  = 99
