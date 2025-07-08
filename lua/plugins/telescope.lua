@@ -15,6 +15,7 @@ return {
             vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'Registers' })
             vim.keymap.set('n', '<leader>fv', function() vim.cmd [[Telescope neoclip initial_mode=normal]] end, { desc = 'Clipboard History' })
             vim.keymap.set('n', '<leader>fp', function() vim.cmd [[Telescope projects initial_mode=normal]] end, { desc = 'Project Picker' })
+            vim.keymap.set('n', '<leader>fr', function() vim.cmd [[Telescope recent_files initial_mode=normal]] end, { desc = 'Recent Files' })
             vim.keymap.set('n', '<leader>xe', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Code Errors (Telescope)' })
         end,
         require('telescope').setup(
@@ -23,6 +24,9 @@ return {
                 buffers   = { initial_mode = 'normal' },
                 marks     = { initial_mode = 'normal' },
                 registers = { initial_mode = 'normal' },
+            },
+            recent_files = {
+                only_cwd = true
             }
         }),
     },
@@ -45,5 +49,8 @@ return {
             -- load_extension, somewhere after setup function:
             require("telescope").load_extension("ui-select")
         end
+    },
+    {
+        "smartpde/telescope-recent-files"
     }
 }
