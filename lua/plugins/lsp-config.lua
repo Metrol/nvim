@@ -1,56 +1,16 @@
 return {
     {
-        "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup()
-        end,
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "lua_ls",
-                    "ts_ls",
-                    "bashls",
-                    "gopls",
-                    "phpactor"
-                    -- "intelephense",
-                },
-            })
-        end,
-    },
-    {
         "neovim/nvim-lspconfig",
+        dependencies = { 'saghen/blink.cmp' },
         config = function()
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            -- local get_intelephense_license = function()
-            --     local f = assert(io.open(os.getenv("HOME") .. "/.config/intelephense/license.txt", "rb"))
-            --     local content = f:read("*a")
-            --     f:close()
-            --     return string.gsub(content, "%s+", "")
-            -- end
+        local lspconfig = require("lspconfig")
+	    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.ts_ls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.bashls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.gopls.setup({
-                capabilities = capabilities,
-            })
-            -- lspconfig.intelephense.setup({
-            --     capabilities = capabilities,
-            --     init_options = {
-            --         licenseKey = get_intelephense_license(),
-            --     },
-            -- })
+            lspconfig.lua_ls.setup({ capabilities = capabilities })
+            lspconfig.ts_ls.setup({ capabilities = capabilities })
+            lspconfig.phpactor.setup({ capabilities = capabilities })
+            lspconfig.gopls.setup({ capabilities = capabilities })
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 desc = "use lsp folding",
