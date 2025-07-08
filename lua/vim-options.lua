@@ -12,20 +12,29 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
-vim.cmd("set number relativenumber")
-vim.cmd("set colorcolumn=80")
-vim.cmd("set cursorline")
+vim.g.mapleader = " "   -- Set the <leader> key to a space
 
-vim.g.mapleader = " "
+
+-- Show a line at col 80 as a reference
+vim.opt.cursorline = true
+vim.opt.colorcolumn = "80"
+
+vim.opt.number         = true           -- Show line numbers by default
+vim.opt.relativenumber = true           -- Relative line numbers
+
+-- Default to 4 space indenting
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+
+vim.opt.fileencoding = 'utf-8'
 
 vim.opt.ignorecase = true				-- enable case insensitive searching
 vim.opt.smartcase = true				-- all searches are case insensitive unless there's a capital letter
 vim.opt.hlsearch = false				-- disable all highlighted search results
 vim.opt.incsearch = true				-- enable incremental searching
+vim.opt.wrap      = false               -- disable text wrapping
 
 vim.opt.scrolloff = 8					-- scroll page when cursor is 8 lines from top/bottom
 vim.opt.sidescrolloff = 8				-- scroll page when cursor is 8 spaces from left/right
@@ -54,3 +63,6 @@ map("v", "<C-s>", ":sort<CR>", {desc = "Sort highlighted text"})
 map("v", "J", ":m '>+1<CR>gv=gv", {desc = "Move current line down"})
 map("v", "K", ":m '>-2<CR>gv=gv", {desc = "Move current line up"})
 
+-- Quick buffer switching
+map("n", "<Tab>", ":bnext <CR>")				-- Tab goes to next buffer
+map("n", "<S-Tab>", ":bprevious <CR>")			-- Shift+Tab goes to previous buffer
