@@ -39,6 +39,7 @@ return {
 					{ name = 'nvim_lsp' },
                     { name = 'vim-dadbod-completion' },
 					{ name = "luasnip" }, -- For luasnip users.
+                    { name = "lazydev", group_index = 1 },
 				}, {
 					{ name = "buffer" },
 				}),
