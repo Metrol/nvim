@@ -14,8 +14,10 @@ return {
                 },
 
                 indent = {
-                    enable = true
+                    enable = false
                 },
+                modules = {},
+                ignore_install = {},
 
                 textobjects = {
                     select = {

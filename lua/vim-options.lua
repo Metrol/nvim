@@ -28,6 +28,8 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
+vim.opt.smartindent = true              -- Fix indent issues
+
 vim.opt.fileencoding = 'utf-8'
 
 vim.opt.ignorecase = true				-- enable case insensitive searching
