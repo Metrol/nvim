@@ -68,3 +68,10 @@ map("v", "K", ":m '>-2<CR>gv=gv", {desc = "Move current line up"})
 -- Quick buffer switching
 map("n", "<Tab>", ":bnext <CR>")				-- Tab goes to next buffer
 map("n", "<S-Tab>", ":bprevious <CR>")			-- Shift+Tab goes to previous buffer
+
+-- Toggle word wrap
+vim.opt.linebreak = true
+map("n", "<leader>ww", ":set wrap <CR>", { desc = "Enable word wrap" })
+map("n", "<leader>wo", ":set nowrap <CR>", { desc = "Disable word wrap" })
+
+
