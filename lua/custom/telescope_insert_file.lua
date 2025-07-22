@@ -62,7 +62,6 @@ end
 local function substitute_placeholders(lines)
     local current_file = vim.api.nvim_buf_get_name(0)
     local project_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1] or ""
-    local rel_path = vim.fn.fnamemodify(current_file, ":." .. project_root)
 
     -- Compute PHP namespace
     local php_namespace = get_psr4_namespace(current_file, project_root)
