@@ -107,6 +107,26 @@ local function substitute_placeholders(lines)
         end
     end
 
+    -- Replace [PHPNS:<cutoff>] with trimmed namespace
+    for i, line in ipairs(lines) do
+        line = line:gsub("%[PHPNS:([%w_]+)%]", function(cutoff)
+            local ns_parts = vim.split(php_namespace, "\\")
+            local cutoff_index = nil
+            for idx, part in ipairs(ns_parts) do
+                if part == cutoff then
+                    cutoff_index = idx
+                    break
+                end
+            end
+            if cutoff_index then
+                return table.concat(vim.list_slice(ns_parts, 1, cutoff_index), "\\")
+            else
+                return php_namespace -- fallback to full namespace
+            end
+        end)
+        lines[i] = line
+    end
+
     -- Apply substitutions
     for i, line in ipairs(lines) do
         for pattern, value in pairs(substitutions) do
@@ -122,7 +142,26 @@ local function substitute_placeholders(lines)
         lines[i] = line
     end
 
-    return lines
+    -- Track cursor placeholder
+    local cursor_pos = nil
+    for i, line in ipairs(lines) do
+        for pattern, value in pairs(substitutions) do
+            line = line:gsub(pattern, value)
+        end
+        for key, value in pairs(input_prompts) do
+            line = line:gsub("%[INPUT:?\"?" .. key .. "\"?%]", value)
+        end
+
+        local col = line:find("%[XX%]")
+        if col then
+            cursor_pos = { i, col - 1 } -- 0-based indexing
+            line = line:gsub("%[XX%]", "")
+        end
+
+        lines[i] = line
+    end
+
+    return lines, cursor_pos
 end
 
 function M.insert_file_from_snippets()
@@ -204,8 +243,16 @@ function M.insert_file_from_snippets()
                                 return
                             end
 
-                            lines = substitute_placeholders(lines)
-                            vim.api.nvim_put(lines, "l", false, true)
+                            -- lines = substitute_placeholders(lines)
+                            -- vim.api.nvim_put(lines, "l", false, true)
+                            local new_lines, cursor_pos = substitute_placeholders(lines)
+                            vim.api.nvim_put(new_lines, "l", false, true)
+
+                            if cursor_pos then
+                                local row = vim.api.nvim_win_get_cursor(0)[1] - #new_lines + cursor_pos[1] - 1
+                                local col = cursor_pos[2]
+                                vim.api.nvim_win_set_cursor(0, { row, col })
+                            end
                         end)
                         return true
                     end,
