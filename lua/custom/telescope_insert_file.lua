@@ -32,6 +32,7 @@ end
 
 local function get_psr4_namespace(current_file, project_root)
     local composer_path = project_root .. "/composer.json"
+
     local f = io.open(composer_path, "r")
     if not f then return nil end
 
@@ -46,11 +47,11 @@ local function get_psr4_namespace(current_file, project_root)
 
     for namespace, base_dir in pairs(decoded.autoload["psr-4"]) do
         local base_path = project_root .. "/" .. base_dir:gsub("/$", "")
-        local rel_path = vim.fn.fnamemodify(current_file, ":.")
+        local abs_path = vim.fn.fnamemodify(current_file, ":p")
 
-        if rel_path:find(base_path, 1, true) == 1 then
-            local relative_ns_path = rel_path:sub(#base_path + 2) -- +2 to skip slash
-            local ns = relative_ns_path:gsub("[/\\]", "\\"):gsub("\\[^\\]*$", "") -- trim file and convert
+        if abs_path:find(base_path, 1, true) == 1 then
+            local relative_ns_path = abs_path:sub(#base_path + 2)
+            local ns = relative_ns_path:gsub("[/\\]", "\\"):gsub("\\[^\\]*$", "")
             return namespace .. ns
         end
     end
@@ -64,12 +65,7 @@ local function substitute_placeholders(lines)
     local rel_path = vim.fn.fnamemodify(current_file, ":." .. project_root)
 
     -- Compute PHP namespace
-    -- local php_namespace = get_psr4_namespace(current_file, project_root) or "App1"
-
-    local php_namespace = rel_path
-      :gsub("^/?src/?", "")         -- optionally trim 'src/' prefix
-      :gsub("[/\\]", "\\")          -- convert to single backslashes for PHP
-      :gsub("\\[^\\]*$", "")        -- remove filename
+    local php_namespace = get_psr4_namespace(current_file, project_root)
 
     -- Get filename without extension
     local file_no_ext = vim.fn.fnamemodify(current_file, ":t:r")
