@@ -30,16 +30,79 @@ local function get_project_root()
     return nil
 end
 
-local function substitute_placeholders(lines)
-    local current_year = os.date("%Y")
+local function get_psr4_namespace(current_file, project_root)
+    local composer_path = project_root .. "/composer.json"
+    local f = io.open(composer_path, "r")
+    if not f then return nil end
 
-    -- Simple pattern-based substitution
+    local content = f:read("*a")
+    f:close()
+
+    local ok, decoded = pcall(vim.json.decode, content)
+
+    if not ok or not decoded.autoload or not decoded.autoload["psr-4"] then
+        return nil
+    end
+
+    for namespace, base_dir in pairs(decoded.autoload["psr-4"]) do
+        local base_path = project_root .. "/" .. base_dir:gsub("/$", "")
+        local rel_path = vim.fn.fnamemodify(current_file, ":.")
+
+        if rel_path:find(base_path, 1, true) == 1 then
+            local relative_ns_path = rel_path:sub(#base_path + 2) -- +2 to skip slash
+            local ns = relative_ns_path:gsub("[/\\]", "\\"):gsub("\\[^\\]*$", "") -- trim file and convert
+            return namespace .. ns
+        end
+    end
+
+    return nil
+end
+
+local function substitute_placeholders(lines)
+    local current_file = vim.api.nvim_buf_get_name(0)
+    local project_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1] or ""
+    local rel_path = vim.fn.fnamemodify(current_file, ":." .. project_root)
+
+    -- Compute PHP namespace
+    -- local php_namespace = get_psr4_namespace(current_file, project_root) or "App1"
+
+    local php_namespace = rel_path
+      :gsub("^/?src/?", "")         -- optionally trim 'src/' prefix
+      :gsub("[/\\]", "\\")          -- convert to single backslashes for PHP
+      :gsub("\\[^\\]*$", "")        -- remove filename
+
+    -- Get filename without extension
+    local file_no_ext = vim.fn.fnamemodify(current_file, ":t:r")
+
+    local substitutions = {
+        ["%[YEAR%]"] = os.date("%Y"),
+        ["%[DATE%]"] = os.date("%Y-%m-%d"),
+        ["%[TIME%]"] = os.date("%H:%M"),
+        ["%[AUTHOR%]"] = os.getenv("USER") or "unknown",
+        ["%[FILENAME%]"] = file_no_ext,
+        ["%[PHPNAMESPACE%]"] = php_namespace,
+    }
+
+    -- Prompt for user input
+    local input_prompts = {}
+    for _, line in ipairs(lines) do
+        for match in line:gmatch("%[INPUT:([%w_]+)%]") do
+            if not input_prompts[match] then
+                local input = vim.fn.input("Enter value for " .. match .. ": ")
+                input_prompts[match] = input
+            end
+        end
+    end
+
+    -- Apply substitutions
     for i, line in ipairs(lines) do
+        for pattern, value in pairs(substitutions) do
+            line = line:gsub(pattern, value)
+        end
+        for key, value in pairs(input_prompts) do
+            line = line:gsub("%[INPUT:" .. key .. "%]", value)
+        end
         lines[i] = line
-        :gsub("%[YEAR%]", current_year)
-        :gsub("%[DATE%]", os.date("%Y-%m-%d"))
-        :gsub("%[TIME%]", os.date("%H:%M"))
-        :gsub("%[FILENAME%]", vim.fn.expand("%:t"))
     end
 
     return lines
@@ -77,19 +140,40 @@ function M.insert_file_from_snippets()
             vim.schedule(function()
                 pickers.new({}, {
                     prompt_title = "Insert Snippet (." .. ext .. ")",
-                    finder = finders.new_table({ results = results }),
+                    cwd = snippets_dir,
+                    finder = finders.new_oneshot_job(
+                        { "fdfind", "--type", "f", "--extension", ext },
+                        { cwd = snippets_dir }
+                    ),
                     sorter = conf.generic_sorter({}),
+                    previewer = conf.file_previewer({}),
+                    -- previewer = previewers.cat.net({}),
                     attach_mappings = function(_, map)
                         actions.select_default:replace(function(prompt_bufnr)
                             local selection = action_state.get_selected_entry()
                             actions.close(prompt_bufnr)
 
-                            local filepath = snippets_dir .. "/" .. selection[1]
-                            local lines = vim.fn.readfile(filepath)
+                            if not selection or not selection[1] then
+                                vim.notify("Invalid selection", vim.log.levels.ERROR)
+                                return
+                            end
+
+                            -- The previewer shows relative paths from cwd, so join properly
+                            local full_path = Path:new(snippets_dir, selection[1]):absolute()
+
+                            if not vim.fn.filereadable(full_path) then
+                                vim.notify("File not readable: " .. full_path, vim.log.levels.ERROR)
+                                return
+                            end
+
+                            local lines = vim.fn.readfile(full_path)
+                            if vim.tbl_isempty(lines) then
+                                vim.notify("Snippet is empty", vim.log.levels.WARN)
+                                return
+                            end
 
                             lines = substitute_placeholders(lines)
-
-                            vim.api.nvim_put(lines, "l", true, true)
+                            vim.api.nvim_put(lines, "l", false, true)
                         end)
                         return true
                     end,
