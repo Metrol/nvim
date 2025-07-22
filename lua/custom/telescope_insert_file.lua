@@ -78,13 +78,31 @@ local function substitute_placeholders(lines)
         ["%[PHPNAMESPACE%]"] = php_namespace,
     }
 
-    -- Prompt for user input
+    -- Prompt for user input (supports [INPUT:key], [INPUT:"Prompt"], [INPUT:key:"Prompt"])
     local input_prompts = {}
+
     for _, line in ipairs(lines) do
-        for match in line:gmatch("%[INPUT:([%w_]+)%]") do
-            if not input_prompts[match] then
-                local input = vim.fn.input("Enter value for " .. match .. ": ")
-                input_prompts[match] = input
+        for raw in line:gmatch("%[INPUT:.-%]") do
+            local content = raw:match("%[INPUT:(.-)%]")
+            local key, prompt
+
+            -- Match [INPUT:key:"Prompt"]
+            key, prompt = content:match('^(.-):"(.-)"$')
+
+            if not key then
+                -- Match [INPUT:"Prompt"]
+                prompt = content:match('^"(.-)"$')
+                if prompt then
+                    key = prompt
+                else
+                    -- Fallback to [INPUT:key]
+                    key = content
+                    prompt = "Enter value for " .. key
+                end
+            end
+
+            if not input_prompts[key] then
+                input_prompts[key] = vim.fn.input(prompt .. ": ")
             end
         end
     end
@@ -95,7 +113,11 @@ local function substitute_placeholders(lines)
             line = line:gsub(pattern, value)
         end
         for key, value in pairs(input_prompts) do
-            line = line:gsub("%[INPUT:" .. key .. "%]", value)
+            line = line:gsub("%[INPUT:.-%]", function(m)
+                local match_content = m:match("%[INPUT:(.-)%]")
+                local match_key = match_content:match('^(.-):"') or match_content:match('^"(.-)"$') or match_content
+                return match_key == key and value or m
+            end)
         end
         lines[i] = line
     end
@@ -117,6 +139,7 @@ function M.insert_file_from_snippets()
     end
 
     local snippets_dir = root .. "/snippets"
+    local previewers = require("telescope.previewers")
 
     -- Use fd to find matching extension files
     Job:new({
@@ -135,26 +158,40 @@ function M.insert_file_from_snippets()
             vim.schedule(function()
                 pickers.new({}, {
                     prompt_title = "Insert Snippet (." .. ext .. ")",
-                    cwd = snippets_dir,
-                    finder = finders.new_oneshot_job(
-                        { "fdfind", "--type", "f", "--extension", ext },
-                        { cwd = snippets_dir }
-                    ),
+                    finder = finders.new_table({
+                        results = vim.tbl_map(function(file)
+                            local abs = Path:new(snippets_dir, file):absolute()
+                            return {
+                                display = file,           -- shows nicely relative in the list
+                                value = abs,              -- used by previewer and insertion
+                                ordinal = file,
+                            }
+                        end, results),
+                        entry_maker = function(entry)
+                            return entry
+                        end,
+                    }),
                     sorter = conf.generic_sorter({}),
-                    previewer = conf.file_previewer({}),
-                    -- previewer = previewers.cat.net({}),
+                    previewer = previewers.new_buffer_previewer({
+                        define_preview = function(self, entry, _)
+                            local lines = vim.fn.readfile(entry.value)
+                            if lines then
+                                vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
+                            end
+                        end,
+                    }),
+
                     attach_mappings = function(_, map)
                         actions.select_default:replace(function(prompt_bufnr)
                             local selection = action_state.get_selected_entry()
                             actions.close(prompt_bufnr)
 
-                            if not selection or not selection[1] then
+                            if not selection or not selection.value then
                                 vim.notify("Invalid selection", vim.log.levels.ERROR)
                                 return
                             end
 
-                            -- The previewer shows relative paths from cwd, so join properly
-                            local full_path = Path:new(snippets_dir, selection[1]):absolute()
+                            local full_path = selection.value
 
                             if not vim.fn.filereadable(full_path) then
                                 vim.notify("File not readable: " .. full_path, vim.log.levels.ERROR)
@@ -174,9 +211,9 @@ function M.insert_file_from_snippets()
                     end,
                 }):find()
             end)
-        end,
-    }):start()
-end
+            end,
+        }):start()
+    end
 
 return M
 
