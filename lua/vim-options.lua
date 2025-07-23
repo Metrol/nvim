@@ -14,7 +14,6 @@ end
 
 vim.g.mapleader = " "   -- Set the <leader> key to a space
 
-
 -- Show a line at col 80 as a reference
 vim.opt.cursorline = true
 vim.opt.colorcolumn = "80"
@@ -48,6 +47,13 @@ vim.opt.splitright = true				-- vertical split to the right
 vim.diagnostic.config({
     virtual_lines = false
 })
+
+-- Super star search, but don't jump away
+map('n', '*', '"syiw<Esc>: let @/ = @s<CR>')
+
+-- Turn off highlights after hitting ESC
+vim.opt.hlsearch = true
+map('n', '<leader>/', ':noh<CR>', { desc = 'Disable highlights from search' })
 
 -- Code folding options
 vim.opt.foldcolumn = '1'

@@ -16,7 +16,6 @@ return {
 
             lspconfig.lua_ls.setup({ capabilities = capabilities })
             lspconfig.ts_ls.setup({ capabilities = capabilities })
-            -- lspconfig.phpactor.setup({ capabilities = capabilities })
             lspconfig.gopls.setup({ capabilities = capabilities })
 
             lspconfig.intelephense.setup({
