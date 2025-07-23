@@ -48,6 +48,10 @@ vim.diagnostic.config({
     virtual_lines = false
 })
 
+-- Close quick fix window after pressing enter
+vim.keymap.set("n", "<CR>", "<CR><Cmd>cclose<CR>",
+    { buffer = false, noremap = true, silent = true })
+
 -- Super star search, but don't jump away
 map('n', '*', '"syiw<Esc>: let @/ = @s<CR>')
 
