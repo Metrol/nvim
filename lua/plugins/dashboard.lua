@@ -61,7 +61,8 @@ return {
                     --     end,
                     -- },
                     {
-                        icon = "󰒲 ",
+                        -- icon = "󰒲 ",
+                        icon = " ",
                         desc = "Mason",
                         key = "m",
                         action = "Mason",
