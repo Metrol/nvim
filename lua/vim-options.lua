@@ -53,7 +53,7 @@ vim.keymap.set("n", "<CR>", "<CR><Cmd>cclose<CR>",
     { buffer = false, noremap = true, silent = true })
 
 -- Super star search, but don't jump away
-map('n', '*', '"syiw<Esc>: let @/ = @s<CR>')
+map('n', '*', '*N')
 
 -- Turn off highlights after hitting ESC
 vim.opt.hlsearch = true
