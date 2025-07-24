@@ -4,7 +4,8 @@ return {
     dependencies = { "echasnovski/mini.icons" },
     config = function()
         local lolcrab = vim.fn.executable("lolcrab") == 1
-        local logo_path = vim.fn.stdpath("config") .. "/lua/assets/dashboard.txt"
+        -- local logo_path = vim.fn.stdpath("config") .. "/lua/assets/dashboard.txt"
+        local logo_path = vim.fn.stdpath("config") .. "/lua/assets/metrol.txt"
 
         require("dashboard").setup({
             theme = "doom",
