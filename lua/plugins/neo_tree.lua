@@ -8,7 +8,7 @@ return {
     },
     config = function()
 --        vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left<CR>')
-        vim.keymap.set('n', '<leader>n', ':Neotree focus<CR>')
+        vim.keymap.set('n', '<leader>e', ':Neotree focus<CR>', { desc = 'File Explorer'})
 --        vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>')
         require("neo-tree").setup({
             window = {
