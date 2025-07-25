@@ -34,13 +34,6 @@ return {
             desc = 'Debug: Disconnect',
         },
         {
-            '<S-F8>',
-            function()
-                require('dap').continue()
-            end,
-            desc = 'Debug: Start/Continue',
-        },
-        {
             '<F8>',
             function()
                 require('dap').toggle_breakpoint()
@@ -50,9 +43,9 @@ return {
         {
             '<F9>',
             function()
-                require('dap').step_over()
+                require('dap').continue()
             end,
-            desc = 'Debug: Step Over',
+            desc = 'Debug: Start/Continue',
         },
         {
             '<F10>',
@@ -66,14 +59,14 @@ return {
             function()
                 require('dap').continue()
             end,
-            desc = 'Debug: Start/Continue',
+            desc = 'Debug: Start/Continue [F9]',
         },
         {
             '<leader>dS',
             function()
                 require('dap').disconnect()
             end,
-            desc = 'Debug: Disconnect',
+            desc = 'Debug: Disconnect [F7]',
         },
         {
             '<leader>di',
@@ -101,7 +94,7 @@ return {
             function()
                 require('dap').toggle_breakpoint()
             end,
-            desc = 'Debug: Toggle Breakpoint',
+            desc = 'Debug: Toggle Breakpoint [F8]',
         },
         {
             '<leader>dB',
@@ -116,7 +109,7 @@ return {
             function()
                 require('dapui').toggle()
             end,
-            desc = 'Debug: Toggle Debug UI',
+            desc = 'Debug: Toggle Debug UI [F10]',
         },
     },
     config = function()
