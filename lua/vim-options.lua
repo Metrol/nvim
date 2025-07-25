@@ -48,6 +48,11 @@ vim.diagnostic.config({
     virtual_lines = false
 })
 
+vim.keymap.set('n', '<leader>xt', function()
+  local new_config = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })
+
 -- Close quick fix window after pressing enter
 vim.keymap.set("n", "<CR>", "<CR><Cmd>cclose<CR>",
     { buffer = false, noremap = true, silent = true })
@@ -55,7 +60,7 @@ vim.keymap.set("n", "<CR>", "<CR><Cmd>cclose<CR>",
 -- Super star search, but don't jump away
 map('n', '*', '*N')
 
--- Turn off highlights after hitting ESC
+-- Turn off highlights quickly
 vim.opt.hlsearch = true
 map('n', '<leader>/', ':noh<CR>', { desc = 'Disable highlights from search' })
 
@@ -81,7 +86,13 @@ map("n", "<S-Tab>", ":bprevious <CR>")			-- Shift+Tab goes to previous buffer
 
 -- Toggle word wrap
 vim.opt.linebreak = true
-map("n", "<leader>ww", ":set wrap <CR>", { desc = "Enable word wrap" })
-map("n", "<leader>wo", ":set nowrap <CR>", { desc = "Disable word wrap" })
+map("n", "<leader>sw", ":set wrap! <CR>", { desc = "Toggle word wrap" })
+map("n", "<leader>st", ":Themify <CR>", { desc = "Set color theme" })
+map("n", "<leader>sl", ":Lazy <CR>", { desc = "Manage plugins" })
+map("n", "<leader>sm", ":Mason <CR>", { desc = "Manage LSPs" })
 
+vim.keymap.set('n', '<leader>sd', function()
+  local new_config = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })
 

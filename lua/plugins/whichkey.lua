@@ -9,6 +9,7 @@ return {
                 { "<leader>D", group = "Database" },
                 { "<leader>f", group = "Finders" },
                 { "<leader>g", group = "LSP Functions" },
+                { "<leader>s", group = "Settings" },
                 { "<leader>w", group = "Windowing" },
                 { "<leader>x", group = "Diagnostics" },
             }
