@@ -53,6 +53,14 @@ return {
                             vim.cmd [[Telescope projects initial_mode=normal]]
                         end,
                     },
+                    {
+                        icon = " ",
+                        desc = "LazyGit",
+                        key = "g",
+                        action = function()
+                            vim.cmd [[LazyGit]]
+                        end,
+                    },
                     -- {
                     --     icon = " ",
                     --     desc = "Dotfiles",
@@ -62,18 +70,18 @@ return {
                     --     end,
                     -- },
                     {
-                        -- icon = "󰒲 ",
-                        icon = " ",
-                        desc = "Mason",
-                        key = "m",
-                        action = "Mason",
-                    },
-                    {
                         icon = "󰒲 ",
                         desc = "Plugin Manager",
                         key = "l",
                         action = "Lazy",
                     },
+                    -- {
+                    --     -- icon = "󰒲 ",
+                    --     icon = " ",
+                    --     desc = "Mason",
+                    --     key = "m",
+                    --     action = "Mason",
+                    -- },
                     {
                         icon = "󰿅 ",
                         desc = "Quit Neovim",
