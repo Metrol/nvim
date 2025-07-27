@@ -35,6 +35,15 @@ vim.keymap.set({'n', 'v', 'x'}, '<leader>cy', '"+y<CR>', { desc = 'Copy to syste
 vim.keymap.set({'n', 'v', 'x'}, '<leader>cd', '"+d<CR>', { desc = 'Cut to system clipboard'})
 vim.keymap.set({'n', 'v'}, '<leader>cp', '"+p<CR>', { desc = 'Paste from system clipboard'})
 
+-- Paste without overwriting register
+vim.keymap.set("v", "p", '"_dP')
+
+-- Make Y behave like C or D
+vim.keymap.set("n", "Y", "y$")
+
+-- Select all
+vim.keymap.set("n", "==", "gg<S-v>G")
+
 -- Visual Maps
 Map("v", "<leader>r", "\"hy:%s/<C-r>h//g<left><left>", {desc = "Replace all instances of highlighted" })
 Map("v", "<C-s>", ":sort<CR>", {desc = "Sort highlighted text"})
