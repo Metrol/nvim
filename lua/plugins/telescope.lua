@@ -7,16 +7,17 @@ return {
             local builtin = require("telescope.builtin")
             vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files'})
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live GREP' })
-            vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Search Buffers' })
+            vim.keymap.set('n', '<leader>wf', builtin.buffers, { desc = 'Search Buffers' })
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Help Tags' })
             -- Outline View
             vim.keymap.set('n', '<leader>fo', builtin.treesitter, { desc = 'Tree Sitter' })
             vim.keymap.set('n', '<leader>fm', builtin.marks, { desc = 'Marks' })
-            vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'Registers' })
             vim.keymap.set('n', '<leader>ft', builtin.current_buffer_fuzzy_find, { desc = 'Find Text In Buffer' })
-            vim.keymap.set('n', '<leader>fv', function() vim.cmd [[Telescope neoclip initial_mode=normal]] end, { desc = 'Clipboard History' })
             vim.keymap.set('n', '<leader>fp', function() vim.cmd [[Telescope projects initial_mode=normal]] end, { desc = 'Project Picker' })
             vim.keymap.set('n', '<leader>fr', function() vim.cmd [[Telescope recent_files initial_mode=insert]] end, { desc = 'Recent Files' })
+
+            vim.keymap.set('n', '<leader>ch', function() vim.cmd [[Telescope neoclip initial_mode=normal]] end, { desc = 'Clipboard History' })
+            vim.keymap.set('n', '<leader>cl', function() vim.cmd [[Telescope registers initial_mode=normal]] end, { desc = 'List Registers' })
 
             vim.keymap.set("n", "<leader>fi", function()
                 require("custom.telescope_insert_file").insert_file_from_snippets()

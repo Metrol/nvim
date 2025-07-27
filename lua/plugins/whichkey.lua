@@ -5,6 +5,7 @@ return {
         spec = {
             {
                 mode = { "n", "v" },
+                { "<leader>c", group = "Clipboard" },
                 { "<leader>d", group = "Debug" },
                 { "<leader>D", group = "Database" },
                 { "<leader>f", group = "Finders" },

@@ -26,6 +26,7 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.winborder = 'rounded'
 
 vim.opt.smartindent = true              -- Fix indent issues
 
@@ -74,6 +75,11 @@ vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 map('n', '-', '<cmd>foldclose<CR>', { desc = 'Close code fold' })
 map('n', '+', '<cmd>foldopen<CR>', { desc = 'Open code fold' })
 
+-- Copy paste to the system clipboard
+vim.keymap.set({'n', 'v', 'x'}, '<leader>cy', '"+y<CR>', { desc = 'Copy to system clipboard'})
+vim.keymap.set({'n', 'v', 'x'}, '<leader>cd', '"+d<CR>', { desc = 'Cut to system clipboard'})
+vim.keymap.set({'n', 'v'}, '<leader>cp', '"+p<CR>', { desc = 'Paste from system clipboard'})
+
 -- Visual Maps
 map("v", "<leader>r", "\"hy:%s/<C-r>h//g<left><left>", {desc = "Replace all instances of highlighted" })
 map("v", "<C-s>", ":sort<CR>", {desc = "Sort highlighted text"})
@@ -90,6 +96,7 @@ map("n", "<leader>sw", ":set wrap! <CR>", { desc = "Toggle word wrap" })
 map("n", "<leader>st", ":Themify <CR>", { desc = "Set color theme" })
 map("n", "<leader>sl", ":Lazy <CR>", { desc = "Manage plugins" })
 map("n", "<leader>sm", ":Mason <CR>", { desc = "Manage LSPs" })
+map("n", "<leader>sh", ":set cursorline! <CR>", { desc = "Toggle line highlight" })
 
 vim.keymap.set('n', '<leader>sd', function()
   local new_config = not vim.diagnostic.config().virtual_lines
