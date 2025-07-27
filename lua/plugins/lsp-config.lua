@@ -50,6 +50,7 @@ return {
             vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = "Implementation" }) -- doesn't work
             vim.keymap.set('n', '<leader>gK', vim.lsp.buf.signature_help, { desc = "Signature Help" }) -- doesn't work
             vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = "Type Definition" }) -- Nope
+            vim.keymap.set('n', '<leader>gc', ':LspRestart<CR>', { desc = "Restart LSP Servers" }) -- Nope
             -- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {}) -- Don't trust it
         end,
     },
