@@ -20,5 +20,7 @@ return {
                 ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
             },
         })
+        vim.keymap.set("n", "<leader>xd", "<cmd>NoiceDismiss<CR>",
+            { desc = "Dismiss Noice Message" })
     end,
 }
