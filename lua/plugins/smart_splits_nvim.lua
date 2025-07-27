@@ -37,5 +37,6 @@ return {
         -- Basic window commands
         vim.keymap.set('n', '<leader>wq', function() vim.cmd [[quit]] end, { desc = 'Close window' })
         vim.keymap.set('n', '<leader>wo', function() vim.cmd [[on]] end, { desc = 'Close other windows' })
+        vim.keymap.set('n', '<leader>wc', '<cmd>bd<CR>', { desc = 'Bufer Close' })
     end,
 }
