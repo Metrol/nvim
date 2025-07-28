@@ -56,7 +56,17 @@ Map("n", "<S-Tab>", ":bprevious <CR>")			-- Shift+Tab goes to previous buffer
 
 -- Toggle word wrap
 vim.opt.linebreak = true
-Map("n", "<leader>sw", ":set wrap! <CR>", { desc = "Toggle word wrap" })
+-- Map("n", "<leader>sw", ":set wrap! <CR>", { desc = "Toggle word wrap" })
+-- Lua function to toggle wrap and colorcolumn
+vim.api.nvim_set_keymap('n', '<leader>sw', '', {
+    desc = 'Toggle word wrap and colorcolumn',
+    callback = function()
+        -- Toggle wrap
+        vim.wo.wrap = not vim.wo.wrap
+        -- Set colorcolumn based on wrap state
+        vim.wo.colorcolumn = vim.wo.wrap and '' or '80'
+    end
+})
 Map("n", "<leader>st", ":Themify <CR>", { desc = "Set color theme" })
 Map("n", "<leader>sl", ":Lazy <CR>", { desc = "Manage plugins" })
 Map("n", "<leader>sm", ":Mason <CR>", { desc = "Manage LSPs" })
