@@ -14,7 +14,7 @@ return {
             vim.keymap.set('n', '<leader>fm', builtin.marks, { desc = 'Marks' })
             vim.keymap.set('n', '<leader>ft', builtin.current_buffer_fuzzy_find, { desc = 'Find Text In Buffer' })
             vim.keymap.set('n', '<leader>fp', function() vim.cmd [[Telescope projects initial_mode=normal]] end, { desc = 'Project Picker' })
-            vim.keymap.set('n', '<leader>fr', function() vim.cmd [[Telescope recent_files initial_mode=insert]] end, { desc = 'Recent Files' })
+            vim.keymap.set('n', '<leader>fr', function() vim.cmd [[Telescope recent_files only_cwd=true initial_mode=insert]] end, { desc = 'Recent Files' })
 
             vim.keymap.set('n', '<leader>ch', function() vim.cmd [[Telescope neoclip initial_mode=normal]] end, { desc = 'Clipboard History' })
             vim.keymap.set('n', '<leader>cl', function() vim.cmd [[Telescope registers initial_mode=normal]] end, { desc = 'List Registers' })

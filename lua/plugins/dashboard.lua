@@ -34,7 +34,7 @@ return {
                         desc = "Recent Files",
                         key = "r",
                         action = function()
-                            vim.cmd [[Telescope recent_files initial_mode=insert]]
+                            vim.cmd [[Telescope recent_files only_cwd=true initial_mode=insert]]
                         end,
                     },
                     {
