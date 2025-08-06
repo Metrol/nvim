@@ -22,6 +22,15 @@ vim.api.nvim_create_autocmd({ "BufLeave" }, {
 	end,
 })
 
+-- Set the mode to "normal" after telescope has selected a file
+vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave" }, {
+    callback = function(event)
+        if vim.bo[event.buf].filetype == "TelescopePrompt" then
+            vim.api.nvim_exec2("silent! stopinsert!", {})
+        end
+    end
+})
+
 -- Should bring up the Dashboard once the last buffer has closed
 vim.api.nvim_create_autocmd("BufDelete", {
     group = vim.api.nvim_create_augroup("bufdelpost_autocmd", {}),
@@ -35,6 +44,7 @@ vim.api.nvim_create_autocmd("BufDelete", {
     end,
 })
 
+-- Opens the dashboard after the last buffer has been closed
 vim.api.nvim_create_autocmd("User", {
     pattern = "BufDeletePost",
     group = vim.api.nvim_create_augroup("dashboard_delete_buffers", {}),
