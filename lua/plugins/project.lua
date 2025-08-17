@@ -7,7 +7,7 @@ return {
             'nvim-telescope/telescope.nvim',
         },
         config = function(_, opts)
-            require("project_nvim").setup({
+            require("project").setup({
                 sync_root_with_cwd = true,
                 respect_buf_cwd = true,
                 update_focused_file = {
