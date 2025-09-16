@@ -9,7 +9,7 @@ return {
     config = function()
 --        vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left<CR>')
         vim.keymap.set('n', '<leader>e', ':Neotree focus<CR>', { desc = 'File Explorer'})
-        vim.keymap.set('n', '<leader>wb', ':Neotree buffers float<CR>', { desc = 'Open Buffers'})
+        vim.keymap.set('n', '<leader>b', ':Neotree buffers float<CR>', { desc = 'Open Buffers'})
 --        vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>')
         require("neo-tree").setup({
             window = {
