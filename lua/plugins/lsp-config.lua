@@ -11,15 +11,7 @@ return {
                 return string.gsub(content, "%s+", "")
             end
 
-            local lspconfig = require("lspconfig")
-            local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-            lspconfig.lua_ls.setup({ capabilities = capabilities })
-            lspconfig.ts_ls.setup({ capabilities = capabilities })
-            lspconfig.gopls.setup({ capabilities = capabilities })
-
-            lspconfig.intelephense.setup({
-                capabilities = capabilities,
+            vim.lsp.config('intelephense', {
                 init_options = {
                     licenseKey = get_intelephense_license(),
                 },
