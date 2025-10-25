@@ -12,6 +12,12 @@ return {
         vim.keymap.set('n', '<leader>b', ':Neotree buffers float<CR>', { desc = 'Open Buffers'})
 --        vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>')
         require("neo-tree").setup({
+            filesystem = {
+                follow_current_file = {
+                    enabled = true,
+                },
+                use_libuv_file_watcher = true,
+            },
             window = {
                 mappings = {
                     ["l"] = "open",
