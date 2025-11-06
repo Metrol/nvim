@@ -14,7 +14,7 @@ return {
                 },
 
                 indent = {
-                    enable = false
+                    enable = true
                 },
                 modules = {},
                 ignore_install = {},
