@@ -10,11 +10,13 @@ return {
                 sync_install = false,
 
                 highlight = {
-                    enable = true
+                    enable = true,
+                    additional_vim_regex_highlighting = true
                 },
 
                 indent = {
-                    enable = true
+                    enable = true,
+                    disable = {"javascript"},
                 },
                 modules = {},
                 ignore_install = {},
