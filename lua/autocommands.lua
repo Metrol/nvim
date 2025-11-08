@@ -1,4 +1,4 @@
--- 
+--
 -- Metrol NeoVim never ending configuration
 --
 vim.api.nvim_create_autocmd("FileType", {
@@ -117,4 +117,10 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
         vim.cmd([[%s/\s\+$//e]])
         vim.fn.setpos('.', save_cursor)
     end
+})
+
+-- Automatically save the open buffer when focus is lost
+vim.api.nvim_create_autocmd({ 'FocusLost' }, {
+    pattern = { '*' },
+    command = 'silent! wa'
 })
