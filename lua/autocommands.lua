@@ -105,42 +105,8 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
     end,
 })
 
--- ide like highlight when stopping cursor
-vim.api.nvim_create_autocmd("CursorMoved", {
-    group = vim.api.nvim_create_augroup("LspReferenceHighlight", { clear = true }),
-    desc = "Highlight references under cursor",
-    callback = function()
-        -- Only run if the cursor is not in insert mode
-        if vim.fn.mode() ~= "i" then
-            local clients = vim.lsp.get_clients({ bufnr = 0 })
-            local supports_highlight = false
-            for _, client in ipairs(clients) do
-                if client.server_capabilities.documentHighlightProvider then
-                    supports_highlight = true
-                    break -- Found a supporting client, no need to check others
-                end
-            end
-
-            -- 3. Proceed only if an LSP is active AND supports the feature
-            if supports_highlight then
-                vim.lsp.buf.clear_references()
-                vim.lsp.buf.document_highlight()
-            end
-        end
-    end,
-})
-
--- ide like highlight when stopping cursor
-vim.api.nvim_create_autocmd("CursorMovedI", {
-    group = "LspReferenceHighlight",
-    desc = "Clear highlights when entering insert mode",
-    callback = function()
-        vim.lsp.buf.clear_references()
-    end,
-})
-
--- A couple of trailing white space cleaner found on Reddit while reviewing
--- the changes above.
+-- A trailing white space cleaner found on Reddit while reviewing the changes
+-- above.
 -- https://www.reddit.com/r/neovim/comments/1oq0x3o/less_bloat_more_autocmds_ide_features_with/
 
 -- Remove trailing whitespace on save while preserving cursor position
