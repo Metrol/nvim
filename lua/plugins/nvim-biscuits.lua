@@ -8,6 +8,7 @@ return {
     },
     config = function()
         require('nvim-biscuits').setup({
+            show_on_start = false,
             cursor_line_only = true,
             toggle_keybind = "<leader>sb",
             default_config = {
