@@ -14,6 +14,9 @@ return {
                     enable = true,
                     update_root = true
                 },
+                telescope = {
+                    disable_file_picker = true,
+                },
             })
             require('telescope').load_extension('projects')
         end
