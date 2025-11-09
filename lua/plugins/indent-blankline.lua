@@ -5,9 +5,16 @@ return {
     ---@type ibl.config
     opts = {},
     config = function()
-        vim.keymap.set("n", "si", "<cmd>IBLToggle<CR>", { desc = "Toggle Indent Guides" })
         require('ibl').setup({
             enabled = false
         })
-    end
+    end,
+    keys = {
+        {
+            mode = { 'n' },
+            "si",
+            "<cmd>IBLToggle<cr>",
+            desc = "Toggle Indent Guides"
+        }
+    }
 }
