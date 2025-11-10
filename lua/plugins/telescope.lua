@@ -5,7 +5,7 @@ return {
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             local builtin = require("telescope.builtin")
-            vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files'})
+            -- vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files'})
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live GREP' })
             vim.keymap.set('n', '<leader>wf', builtin.buffers, { desc = 'Search Buffers' })
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Help Tags' })
@@ -27,6 +27,14 @@ return {
             vim.keymap.set('n', '<leader>xn', function() vim.cmd [[Telescope notify initial_mode=normal]] end, { desc = 'Notifications' })
             vim.keymap.set('n', '<leader>xe', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Code Errors (Telescope)' })
         end,
+        keys = {
+            {
+                mode = {'n'},
+                '<leader>ff',
+                '<cmd>Telescope find_files<cr>',
+                desc = 'Find Files Picker'
+            }
+        },
         require('telescope').setup(
         {
             pickers = {
