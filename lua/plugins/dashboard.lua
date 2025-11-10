@@ -75,13 +75,13 @@ return {
                         key = "l",
                         action = "Lazy",
                     },
-                    -- {
-                    --     -- icon = "󰒲 ",
-                    --     icon = " ",
-                    --     desc = "Mason",
-                    --     key = "m",
-                    --     action = "Mason",
-                    -- },
+                    {
+                        -- icon = "󰒲 ",
+                        icon = " ",
+                        desc = "Mason",
+                        key = "m",
+                        action = "Mason",
+                    },
                     {
                         icon = "󰿅 ",
                         desc = "Quit Neovim",
