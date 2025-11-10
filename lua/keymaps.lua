@@ -1,4 +1,4 @@
--- 
+--
 -- Metrol NeoVim never ending configuration
 --
 
@@ -58,7 +58,7 @@ Map("n", "<S-Tab>", ":bprevious <CR>")			-- Shift+Tab goes to previous buffer
 vim.opt.linebreak = true
 -- Map("n", "<leader>sw", ":set wrap! <CR>", { desc = "Toggle word wrap" })
 -- Lua function to toggle wrap and colorcolumn
-vim.api.nvim_set_keymap('n', '<leader>sw', '', {
+vim.api.nvim_set_keymap('n', '<leader>pw', '', {
     desc = 'Toggle word wrap and colorcolumn',
     callback = function()
         -- Toggle wrap
@@ -67,12 +67,12 @@ vim.api.nvim_set_keymap('n', '<leader>sw', '', {
         vim.wo.colorcolumn = vim.wo.wrap and '' or '80'
     end
 })
-Map("n", "<leader>st", ":Themify <CR>", { desc = "Set color theme" })
-Map("n", "<leader>sl", ":Lazy <CR>", { desc = "Manage plugins" })
-Map("n", "<leader>sm", ":Mason <CR>", { desc = "Manage LSPs" })
-Map("n", "<leader>sh", ":set cursorline! <CR>", { desc = "Toggle line highlight" })
+Map("n", "<leader>pt", ":Themify <CR>", { desc = "Set color theme" })
+Map("n", "<leader>pl", ":Lazy <CR>", { desc = "Manage plugins" })
+Map("n", "<leader>pm", ":Mason <CR>", { desc = "Manage LSPs" })
+Map("n", "<leader>ph", ":set cursorline! <CR>", { desc = "Toggle line highlight" })
 
-vim.keymap.set('n', '<leader>sd', function()
+vim.keymap.set('n', '<leader>pd', function()
     local new_config = not vim.diagnostic.config().virtual_lines
     vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
