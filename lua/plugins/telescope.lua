@@ -22,7 +22,7 @@ return {
 
             vim.keymap.set("n", "<leader>fi", function()
                 require("custom.telescope_insert_file").insert_file_from_snippets()
-            end, { desc = "Insert file contents" })
+            end, { desc = "Insert File Snippet" })
 
             vim.keymap.set('n', '<leader>xn', function() vim.cmd [[Telescope notify initial_mode=normal]] end, { desc = 'Notifications' })
             vim.keymap.set('n', '<leader>xe', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = 'Code Errors (Telescope)' })
