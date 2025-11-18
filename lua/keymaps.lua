@@ -77,3 +77,10 @@ vim.keymap.set('n', '<leader>pd', function()
     vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
+-- Quick fix list related key maps
+Map('n', '<leader>qo', ':copen <CR>', { desc = 'Open quickfix window'})
+Map('n', '<leader>qq', ':cclose <CR>', { desc = 'Close quickfix window'})
+Map('n', '<leader>qn', ':cnext <CR>', { desc = 'Next quick fix item'})
+Map('n', '<leader>qp', ':cprevious <CR>', { desc = 'Previous quick fix item'})
+Map('n', '<leader>qf', ':Telescope quickfix <CR>', { desc = 'Open quick fix picker'})
+
