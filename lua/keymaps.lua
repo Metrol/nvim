@@ -23,6 +23,10 @@ vim.keymap.set("n", "<CR>", "<CR><Cmd>cclose<CR>",
 -- Super star search, but don't jump away
 Map('n', '*', '*N')
 
+-- Better code indenting while in visual mode
+Map('v', '<', '<gv', { desc = 'Indent code left'} )
+Map('v', '>', '>gv', { desc = 'Indent code right'} )
+
 -- Turn off highlights quickly
 vim.opt.hlsearch = true
 Map('n', '<leader>/', ':noh<CR>', { desc = 'Disable highlights from search' })
@@ -43,6 +47,20 @@ vim.keymap.set("n", "Y", "y$")
 
 -- Select all
 vim.keymap.set("n", "==", "gg<S-v>G")
+
+-- Put the location of the cursor in the middle of the screen when jumping
+-- around.
+vim.keymap.set("n", "G", "Gzz", { noremap = true, desc = "Go to bottom and center" })
+vim.keymap.set("n", "n", "nzz", { noremap = true })
+vim.keymap.set("n", "N", "Nzz", { noremap = true })
+vim.keymap.set("n", "*", "*zz", { noremap = true })
+vim.keymap.set("n", "#", "#zz", { noremap = true })
+vim.keymap.set("n", "g*", "g*zz", { noremap = true })
+vim.keymap.set("n", "g#", "g#zz", { noremap = true })
+
+-- Slightly easier way to jump to the beginning and ending of a line
+vim.keymap.set({ "n", "v" }, "gh", "_", { noremap = true, desc = "Go to start of line" })
+vim.keymap.set({ "n", "v" }, "gl", "$", { noremap = true, desc = "Go to end of line" })
 
 -- Visual Maps
 Map("v", "<leader>r", "\"hy:%s/<C-r>h//g<left><left>", {desc = "Replace all instances of highlighted" })
@@ -78,6 +96,7 @@ vim.keymap.set('n', '<leader>pd', function()
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
 -- Quick fix list related key maps
+vim.keymap.set("n", "q/", ":vimgrep /<C-R>//j %<CR>|:cw<CR>", { noremap = true, silent = true, desc = "Populate quickfix with search results" })
 Map('n', '<leader>qo', ':copen <CR>', { desc = 'Open quickfix window'})
 Map('n', '<leader>qq', ':cclose <CR>', { desc = 'Close quickfix window'})
 Map('n', '<leader>qn', ':cnext <CR>', { desc = 'Next quick fix item'})
