@@ -11,4 +11,7 @@ return {
             require("mason-lspconfig").setup({})
         end,
     },
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+    }
 }
