@@ -4,38 +4,26 @@ return {
 	config = function()
 		local conform = require("conform")
 
+        local clang_config_path = vim.fn.stdpath("config") .. "/.clang-format"
+
 		conform.setup({
 			formatters_by_ft = {
-				-- Use stylua for lua files
 				lua = { "stylua" },
-
-				-- Use clang-format for JS/TS (it supports Allman natively)
 				javascript = { "clang-format", lsp_format = "never" },
 				typescript = { "clang-format", lsp_format = "never" },
 				javascriptreact = { "clang-format", lsp_format = "never" },
 				typescriptreact = { "clang-format", lsp_format = "never" },
-
 				php = { "php_cs_fixer", lsp_format = "never" },
 			},
 			formatters = {
-				clang_format = {
-					prepend_args = {
-						"-style={BasedOnStyle: WebKit, BreakBeforeBraces: Allman, IndentWidth: 4, ColumnLimit: 100}",
-					},
+				["clang-format"] = {
+					prepend_args = { "-style=file:" .. clang_config_path },
 				},
 			},
-			-- Set up format-on-save
-			-- format_on_save = {
-			-- 	lsp_fallback = true, -- If stylua isn't found, try the LSP
-			-- 	async = false,
-			-- 	timeout_ms = 500,
-			-- },
 		})
-
-		-- Optional: Keymap to format manually
 		vim.keymap.set({ "n", "v" }, "<leader>gf", function()
 			conform.format({
-				lsp_fallback = true,
+				lsp_fallback = false,
 				async = false,
 				timeout_ms = 1000,
 			})
