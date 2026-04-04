@@ -1,7 +1,7 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
+        -- branch = '0.1.x',
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             local builtin = require("telescope.builtin")
@@ -44,7 +44,7 @@ return {
             },
             recent_files = {
                 only_cwd = true
-            }
+            },
         }),
     },
     {
