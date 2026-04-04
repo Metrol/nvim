@@ -7,8 +7,9 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         opts = {
             ensure_installed = {
-                "lua", "vim", "vimdoc", "php", "phpdoc", "twig",
-                "html", "javascript", "typescript", "tsx"
+                "lua", "vim", "vimdoc",
+                "php", "phpdoc", "twig", "html",
+                "javascript", "typescript", "jsdoc"
             },
 
             -- Setting this to true will run `:TSUpdate` on every startup
@@ -16,10 +17,12 @@ return {
 
             highlight = {
                 enable = true,
+                additional_vim_regex_highlighting = true
             },
 
             indent = {
                 enable = true,
+                disable = {"javascript"},
             },
         },
         config = function(_, opts)
@@ -37,11 +40,6 @@ return {
                     enable_rename = true,
                     enable_close_on_slash = false,
                 },
-                -- Add explicit support for PHP/JS injections
-                per_filetype = {
-                    ["php"] = { enable_close = true },
-                    ["javascript"] = { enable_close = true },
-                }
             })
         end,
     },
