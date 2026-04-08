@@ -1,32 +1,27 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        version = false,
+        version = "*",
         build = ":TSUpdate",
-        branch = "main",
-        event = { "BufReadPost", "BufNewFile" },
+        lazy  = false,
         opts = {
             ensure_installed = {
                 "lua", "vim", "vimdoc",
-                "php", "phpdoc", "twig", "html",
+                "php", "phpdoc", "twig", "html", "css",
                 "javascript", "typescript", "jsdoc"
             },
-
-            -- Setting this to true will run `:TSUpdate` on every startup
             auto_install = true,
-
             highlight = {
                 enable = true,
-                additional_vim_regex_highlighting = true
+                additional_vim_regex_highlighting = false
             },
-
             indent = {
                 enable = true,
                 disable = {"javascript"},
             },
         },
         config = function(_, opts)
-            require("nvim-treesitter.config").setup(opts)
+            require("nvim-treesitter.configs").setup(opts)
         end,
     },
     {
