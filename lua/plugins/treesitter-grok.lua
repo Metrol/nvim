@@ -51,4 +51,27 @@ return {
             })
         end,
     },
+     {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        event = { "BufReadPost", "BufNewFile" },
+        config = function()
+            require("nvim-treesitter-textobjects").setup({
+                move = {
+                    enable = true,
+                    set_jumps = true,
+                },
+            })
+
+            -- Alt-Up / Alt-Down for jumping between methods/functions
+            vim.keymap.set("n", "<A-Up>", function()
+                require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+            end, { desc = "Previous function/method" })
+
+            vim.keymap.set("n", "<A-Down>", function()
+                require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+            end, { desc = "Next function/method" })
+        end,
+    },
 }
