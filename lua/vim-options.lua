@@ -1,4 +1,4 @@
--- 
+--
 -- Metrol NeoVim never ending configuration
 --
 
@@ -47,3 +47,4 @@ vim.opt.foldenable = true
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
+vim.o.nrformats = "unsigned"
