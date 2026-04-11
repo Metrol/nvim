@@ -20,6 +20,13 @@ vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave" }, {
     end
 })
 
+-- Attempt to update the recent file listing when saving a file
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+        vim.cmd("silent! wshada")
+    end,
+})
+
 -- Should bring up the Dashboard once the last buffer has closed
 vim.api.nvim_create_autocmd("BufDelete", {
     group = vim.api.nvim_create_augroup("bufdelpost_autocmd", {}),
