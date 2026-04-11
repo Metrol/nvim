@@ -4,20 +4,10 @@ return {
     dependencies = { "echasnovski/mini.icons" },
     config = function()
         local lolcrab = vim.fn.executable("lolcrab") == 1
-        -- local logo_path = vim.fn.stdpath("config") .. "/lua/assets/dashboard.txt"
         local logo_path = vim.fn.stdpath("config") .. "/lua/assets/metrol.txt"
 
         require("dashboard").setup({
             theme = "doom",
-            -- preview = lolcrab and {
-            --     -- lolcrab has different gradients built in
-            --     -- lolcrab -g cool for example
-            --     -- you can check the presets out with lolcrab --presets
-            --     command = "lolcrab -g warm",
-            --     file_path = logo_path,
-            --     file_width = 69,
-            --     file_height = 8,
-            -- },
             config = {
                 header = (not lolcrab) and vim.fn.readfile(logo_path) or nil,
                 center = {
@@ -34,7 +24,11 @@ return {
                         desc = "Recent Files",
                         key = "r",
                         action = function()
-                            vim.cmd [[Telescope recent_files only_cwd=true initial_mode=insert]]
+                            vim.cmd("rshada") -- refresh oldfiles from disk
+                            require("telescope.builtin").oldfiles({
+                                only_cwd = true,
+                                initial_mode = "normal"
+                            })
                         end,
                     },
                     {
@@ -61,14 +55,6 @@ return {
                             vim.cmd [[LazyGit]]
                         end,
                     },
-                    -- {
-                    --     icon = " ",
-                    --     desc = "Dotfiles",
-                    --     key = "d",
-                    --     action = function()
-                    --         require("fzf-lua").files({ cwd = vim.fn.expand("~/.dotfiles") })
-                    --     end,
-                    -- },
                     {
                         icon = "󰒲 ",
                         desc = "Plugin Manager",
