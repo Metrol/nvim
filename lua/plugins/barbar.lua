@@ -1,3 +1,11 @@
+--
+-- Barbar
+--
+-- Provides visible tabs at the top of the editor for each open buffer.
+-- It also provides some nice shortcuts to switch between buffers.
+--
+-- https://github.com/romgrk/barbar.nvim
+--
 return {
     'romgrk/barbar.nvim',
     dependencies = {

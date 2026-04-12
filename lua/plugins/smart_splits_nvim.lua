@@ -1,13 +1,13 @@
--- No example configuration was found for this plugin.
 --
--- For detailed information on configuring this plugin, please refer to its
--- official documentation:
+-- Smart Splits
 --
---   https://github.com/mrjones2014/smart-splits.nvim
+-- Smarter and more intuitive split pane management that uses a mental model
+-- of left/right/up/down instead of wider/narrower/taller/shorter for
+-- resizing. Supports seamless navigation between Neovim and terminal
+-- multiplexer split panes.
 --
--- If you wish to use this plugin, you can optionally modify and then uncomment
--- the configuration below.
-
+-- https://github.com/mrjones2014/smart-splits.nvim
+--
 return {
     "mrjones2014/smart-splits.nvim",
 

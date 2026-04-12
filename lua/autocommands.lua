@@ -1,6 +1,9 @@
 --
 -- Metrol NeoVim never ending configuration
 --
+
+-- These 2 entries are attempting to address indenting issues I've had with
+-- PHP and JavaScript.  They seem to be working out okay
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "php",
     command = "setlocal autoindent smartindent indentexpr="
@@ -12,6 +15,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Set the mode to "normal" after telescope has selected a file
+-- This doesn't always work, so need to take that beat to check after a file
+-- has opened.
 vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave" }, {
     callback = function(event)
         if vim.bo[event.buf].filetype == "TelescopePrompt" then
@@ -20,14 +25,16 @@ vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave" }, {
     end
 })
 
--- Attempt to update the recent file listing when saving a file
+-- Update the recent file listing when saving a file.
+-- Neovim was doing a nice job keep track of recently edited files, until
+-- 0.12 came around.  So far, this has fixed the problem
 vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
         vim.cmd("silent! wshada")
     end,
 })
 
--- Should bring up the Dashboard once the last buffer has closed
+-- Brings up the Dashboard once the last buffer has closed
 vim.api.nvim_create_autocmd("BufDelete", {
     group = vim.api.nvim_create_augroup("bufdelpost_autocmd", {}),
     desc = "BufDeletePost User autocmd",
@@ -60,7 +67,7 @@ vim.api.nvim_create_autocmd("User", {
 -- The following are a stack of little quality of life tweaks from this YouTube
 -- video: https://www.youtube.com/watch?v=v36vLiFVOXY
 
--- highlight yank
+-- Briefly highlight the text being yanked.
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
     pattern = "*",
@@ -70,7 +77,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
--- restore cursor to file position in previous editing session
+-- Restore cursor to file position in previous editing session
 vim.api.nvim_create_autocmd("BufReadPost", {
     callback = function(args)
         local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
@@ -85,18 +92,18 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
--- open help in vertical split
+-- Open help in vertical split
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",
     command = "wincmd L",
 })
 
--- auto resize splits when the terminal's window is resized
+-- Auto resize splits when the terminal's window is resized
 vim.api.nvim_create_autocmd("VimResized", {
     command = "wincmd =",
 })
 
--- show cursorline only in active window enable
+-- Show cursorline only in active window enable
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
     group = vim.api.nvim_create_augroup("active_cursorline", { clear = true }),
     callback = function()
@@ -104,7 +111,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
     end,
 })
 
--- show cursorline only in active window disable
+-- Show cursorline only in active window disable
 vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
     group = "active_cursorline",
     callback = function()
@@ -126,8 +133,10 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     end
 })
 
--- Automatically save the open buffer when focus is lost
+-- Automatically save the open buffer when focus is lost.
+-- This one is especially nice when editing JavaScript for the web.
 vim.api.nvim_create_autocmd({ 'FocusLost' }, {
     pattern = { '*' },
     command = 'silent! wa'
 })
+

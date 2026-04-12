@@ -1,3 +1,14 @@
+--
+-- Nvim Lint
+--
+-- An asynchronous linter plugin for Neovim (>= 0.9.5) complementary to the
+-- built-in Language Server Protocol support.
+--
+-- https://github.com/mfussenegger/nvim-lint
+--
+-- Installed this one so PHPStan would actively review code as I'm writing.
+-- If I used phpcs, this would be where it would go.
+--
 return {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },

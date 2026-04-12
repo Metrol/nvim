@@ -1,3 +1,15 @@
+--
+-- Treesitter
+--
+-- The recently archived foundational tool for parsing through code with
+-- NeoVim.
+--
+-- https://github.com/nvim-treesitter/nvim-treesitter
+--
+-- This configuration went through a hefty overhaul after Neovim moved to
+-- version 0.12.  Now that the repository has been archived, likely going to
+-- need to replace this at some point.
+--
 return {
     {
         "nvim-treesitter/nvim-treesitter",

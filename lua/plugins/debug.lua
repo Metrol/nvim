@@ -1,15 +1,19 @@
--- debug.lua
 --
--- Shows how to use the DAP plugin to debug your code.
+-- DAP (Debug Adapter Protocol)
 --
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
-
+-- nvim-dap is a Debug Adapter Protocol client implementation for Neovim.
+--
+-- nvim-dap allows you to:
+--
+-- * Launch an application to debug
+-- * Attach to running applications and debug them
+-- * Set breakpoints and step through code
+-- * Inspect the state of the application
+--
+-- https://github.com/mfussenegger/nvim-dap
+--
 return {
-    -- NOTE: Yes, you can install new plugins here!
     'mfussenegger/nvim-dap',
-    -- NOTE: And you can specify dependencies as well
     dependencies = {
         -- Creates a beautiful debugger UI
         'rcarriga/nvim-dap-ui',
@@ -25,7 +29,7 @@ return {
         'leoluz/nvim-dap-go',
     },
     keys = {
-        -- Basic debugging keymaps, feel free to change to your liking!
+        -- Basic debugging keymaps
         {
             '<F7>',
             function()
@@ -103,7 +107,8 @@ return {
             end,
             desc = 'Debug: Set Breakpoint',
         },
-        -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+        -- Toggle to see last session result. Without this, you can't see
+        -- session output in case of unhandled exception.
         {
             '<leader>dt',
             function()

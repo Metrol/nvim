@@ -1,3 +1,12 @@
+--
+-- Telescope
+--
+-- A highly extendable fuzzy finder over lists. Built on the latest awesome
+-- features from neovim core. Telescope is centered around modularity,
+-- allowing for easy customization.
+--
+-- https://github.com/nvim-telescope/telescope.nvim
+--
 return {
     {
         'nvim-telescope/telescope.nvim',
@@ -5,7 +14,6 @@ return {
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             local builtin = require("telescope.builtin")
-            -- vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files'})
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live GREP' })
             vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Search Buffers' })
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Help Tags' })
@@ -55,6 +63,14 @@ return {
             },
         }),
     },
+    --
+    -- Telescope UI Select
+    --
+    -- It sets vim.ui.select to telescope. That means for example that neovim
+    -- core stuff can fill the telescope picker.
+    --
+    -- https://github.com/nvim-telescope/telescope-ui-select.nvim
+    --
     {
         "nvim-telescope/telescope-ui-select.nvim",
         config = function()

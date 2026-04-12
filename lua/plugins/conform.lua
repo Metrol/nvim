@@ -1,3 +1,12 @@
+--
+-- Conform
+--
+-- Lightweight yet powerful formatter plugin for Neovim
+--
+-- https://github.com/stevearc/conform.nvim
+--
+-- <leader>gf in Normal or Visual mode
+--
 return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
@@ -30,3 +39,4 @@ return {
 		end, { desc = "Format file or range (in visual mode)" })
 	end,
 }
+

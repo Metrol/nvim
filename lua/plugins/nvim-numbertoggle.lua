@@ -1,1 +1,13 @@
+--
+-- Number Toggle
+--
+-- Neovim plugin to automatically toggle between relative and absolute
+-- line numbers.
+--
+-- https://github.com/sitiom/nvim-numbertoggle
+--
+-- In other words, using this means that when you have relative line numbers
+-- enabled, going into Insert mode changes those number to absolute.  Pretty
+-- basic, but honestly how Neovim should have worked in the first place.
+--
 return { "sitiom/nvim-numbertoggle" }

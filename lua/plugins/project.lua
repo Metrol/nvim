@@ -1,7 +1,16 @@
+--
+-- Project
+--
+-- A Neovim plugin written in Lua that, under configurable conditions,
+-- automatically sets the user's cwd to the current project root and also
+-- allows users to manage, access and selectively include their projects in
+-- a history.
+--
+-- https://github.com/DrKJeff16/project.nvim
+--
 return {
     {
         'DrKJeff16/project.nvim',
-        -- "ahmedkhalf/project.nvim", -- Original plugin
         requires = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope.nvim',
@@ -22,3 +31,4 @@ return {
         end
     }
 }
+

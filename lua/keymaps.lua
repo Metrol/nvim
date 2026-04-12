@@ -1,5 +1,5 @@
 --
--- Metrol NeoVim never ending configuration
+-- Metrol general key maps
 --
 
 -- Functional wrapper for mapping custom keybindings
@@ -85,11 +85,14 @@ vim.api.nvim_set_keymap('n', '<leader>pw', '', {
         vim.wo.colorcolumn = vim.wo.wrap and '' or '80'
     end
 })
+
+-- Going with "p" for preferences.  Not sure I love it, but it works
 Map("n", "<leader>pt", ":Themify <CR>", { desc = "Set color theme" })
 Map("n", "<leader>pl", ":Lazy <CR>", { desc = "Manage plugins" })
 Map("n", "<leader>pm", ":Mason <CR>", { desc = "Manage LSPs" })
 Map("n", "<leader>ph", ":set cursorline! <CR>", { desc = "Toggle line highlight" })
 
+-- This is doing the same thing as <leader>xt
 vim.keymap.set('n', '<leader>pd', function()
     local new_config = not vim.diagnostic.config().virtual_lines
     vim.diagnostic.config({ virtual_lines = new_config })

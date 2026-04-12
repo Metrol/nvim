@@ -1,3 +1,10 @@
+--
+-- Dashboard
+--
+-- Fancy and Blazing Fast start screen plugin of neovim
+--
+-- https://github.com/nvimdev/dashboard-nvim
+--
 return {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",

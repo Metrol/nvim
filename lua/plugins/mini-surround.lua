@@ -1,3 +1,10 @@
+--
+-- Mini Surround
+--
+-- Provides a suite of utilities for surrounding text
+--
+-- https://github.com/nvim-mini/mini.surround
+--
 return {
     'nvim-mini/mini.surround',
     version = false,

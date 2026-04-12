@@ -1,3 +1,10 @@
+--
+-- Themify
+--
+-- A lightweight colorscheme manager and switcher
+--
+-- https://github.com/LmanTW/themify.nvim
+--
 return {
     'lmantw/themify.nvim',
     lazy = false,

@@ -1,8 +1,17 @@
+--
+-- Blink.cmp
+--
+-- A completion plugin with support for LSPs, cmdline, signature help, and
+-- snippets
+--
+-- https://github.com/Saghen/blink.cmp
+--
+-- Even with native completion, blink seems to still be the best way to go
+-- with providing a variety of sources to choose from.
+--
 return {
     'saghen/blink.cmp',
-    -- optional: provides snippets for the snippet source
     dependencies = { 'rafamadriz/friendly-snippets' },
-
     version = '1.*',
     opts = {
         -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)

@@ -1,3 +1,13 @@
+--
+-- Flash
+--
+-- Lets you navigate your code with search labels, enhanced character motions,
+-- and Treesitter integration.
+--
+-- https://github.com/folke/flash.nvim
+--
+-- For all the fancy things this plugin does, I only really ever use the flash
+-- jump.  For that reason, the other options have been disabled.
 return {
     "folke/flash.nvim",
     event = "VeryLazy",

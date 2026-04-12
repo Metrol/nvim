@@ -1,4 +1,10 @@
--- autoclose tags
+--
+-- Treesitter Auto Tag
+--
+-- Use treesitter to autoclose and autorename html tag
+--
+-- https://github.com/windwp/nvim-ts-autotag
+--
 return {
     "windwp/nvim-ts-autotag",
     config = function()

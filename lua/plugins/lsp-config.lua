@@ -1,3 +1,10 @@
+--
+-- Nvim LSP Config
+--
+-- A collection of LSP server configurations for the Nvim LSP client.
+--
+-- https://github.com/neovim/nvim-lspconfig
+--
 return {
     {
         "neovim/nvim-lspconfig",

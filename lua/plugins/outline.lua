@@ -1,3 +1,11 @@
+--
+-- Outline
+--
+-- A sidebar with a tree-like outline of symbols from your code, powered by
+-- LSP.
+--
+-- https://github.com/hedyhli/outline.nvim
+--
 return {
     "hedyhli/outline.nvim",
     opts = {},
@@ -22,3 +30,7 @@ return {
         })
     end,
 }
+-- I don't know if I could go on without this plugin.  Presently configured
+-- to open on the right in auto preview mode.  This is my go to for vertical
+-- navigation in Neovim.
+-- Yeah, it really is that much nicer than just getting a list of symbols.
