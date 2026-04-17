@@ -34,7 +34,7 @@ return {
                             vim.cmd("rshada") -- refresh oldfiles from disk
                             require("telescope.builtin").oldfiles({
                                 only_cwd = true,
-                                initial_mode = "normal"
+                                initial_mode = "insert"
                             })
                         end,
                     },
