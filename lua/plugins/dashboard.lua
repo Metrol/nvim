@@ -19,7 +19,7 @@ return {
                 header = (not lolcrab) and vim.fn.readfile(logo_path) or nil,
                 center = {
                     {
-                        icon = " ",
+                        icon = " ",
                         desc = "File Explorer",
                         key = "e",
                         action = function()
@@ -27,7 +27,7 @@ return {
                         end,
                     },
                     {
-                        icon = " ",
+                        icon = " ",
                         desc = "Recent Files",
                         key = "r",
                         action = function()
@@ -47,7 +47,7 @@ return {
                         end,
                     },
                     {
-                        icon = " ",
+                        icon = " ",
                         desc = "Projects",
                         key = "p",
                         action = function()
@@ -55,7 +55,7 @@ return {
                         end,
                     },
                     {
-                        icon = " ",
+                        icon = "󰊢 ",
                         desc = "LazyGit",
                         key = "g",
                         action = function()
@@ -63,17 +63,22 @@ return {
                         end,
                     },
                     {
-                        icon = "󰒲 ",
+                        icon = "󱐥 ",
                         desc = "Plugin Manager",
                         key = "l",
                         action = "Lazy",
                     },
                     {
-                        -- icon = "󰒲 ",
-                        icon = " ",
+                        icon = "󰧛 ",
                         desc = "Mason",
                         key = "m",
                         action = "Mason",
+                    },
+                    {
+                        icon = " ",
+                        desc = "Check Health",
+                        key = "h",
+                        action = "checkhealth",
                     },
                     {
                         icon = "󰿅 ",
