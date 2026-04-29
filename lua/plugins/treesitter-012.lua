@@ -31,6 +31,7 @@ return {
 
             -- Disable treesitter indenting for the following
             local no_ts_indent = {
+                "php",
                 "javascript",
                 "twig"
             }
