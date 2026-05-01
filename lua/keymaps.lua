@@ -21,7 +21,10 @@ vim.keymap.set("n", "<CR>", "<CR><Cmd>cclose<CR>",
     { buffer = false, noremap = true, silent = true })
 
 -- Super star search, but don't jump away
-Map('n', '*', '*N')
+-- None of the following seem to work
+-- Map('n', '*', '*N')
+-- vim.keymap.set('n', '*', "*``", { desc = 'Select and highlight all matching words' })
+-- vim.keymap.set('n', '*', ':let @/ = \'<c-r><c-w>\' \\| set hlsearch<cr>', { silent = true })
 
 -- Better code indenting while in visual mode
 Map('v', '<', '<gv', { desc = 'Indent code left'} )
