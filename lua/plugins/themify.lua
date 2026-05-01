@@ -19,7 +19,10 @@ return {
             'marko-cerovac/material.nvim',
             'neanias/everforest-nvim',
             'luisiacc/gruvbox-baby',
-            'ellisonleao/gruvbox.nvim'
+            'ellisonleao/gruvbox.nvim',
+            'sainnhe/gruvbox-material',
+            'rmehri01/onenord.nvim',
+            'loctvl842/monokai-pro.nvim'
         })
     end
 }
