@@ -22,7 +22,8 @@ vim.keymap.set("n", "<CR>", "<CR><Cmd>cclose<CR>",
 
 -- Super star search, but don't jump away
 -- None of the following seem to work
--- Map('n', '*', '*N')
+Map('n', '*', '*N')
+Map('n', '#', '#N')
 -- vim.keymap.set('n', '*', "*``", { desc = 'Select and highlight all matching words' })
 -- vim.keymap.set('n', '*', ':let @/ = \'<c-r><c-w>\' \\| set hlsearch<cr>', { silent = true })
 
@@ -56,8 +57,8 @@ vim.keymap.set("n", "==", "gg<S-v>G")
 vim.keymap.set("n", "G", "Gzz", { noremap = true, desc = "Go to bottom and center" })
 vim.keymap.set("n", "n", "nzz", { noremap = true })
 vim.keymap.set("n", "N", "Nzz", { noremap = true })
-vim.keymap.set("n", "*", "*zz", { noremap = true })
-vim.keymap.set("n", "#", "#zz", { noremap = true })
+-- vim.keymap.set("n", "*", "*zz", { noremap = true })
+-- vim.keymap.set("n", "#", "#zz", { noremap = true })
 vim.keymap.set("n", "g*", "g*zz", { noremap = true })
 vim.keymap.set("n", "g#", "g#zz", { noremap = true })
 
