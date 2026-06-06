@@ -22,7 +22,8 @@ return {
             'ellisonleao/gruvbox.nvim',
             'sainnhe/gruvbox-material',
             'rmehri01/onenord.nvim',
-            'loctvl842/monokai-pro.nvim'
+            'loctvl842/monokai-pro.nvim',
+            'gbprod/nord.nvim'
         })
     end
 }
