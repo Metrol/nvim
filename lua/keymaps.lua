@@ -12,8 +12,8 @@ function Map(mode, lhs, rhs, opts)
 end
 
 vim.keymap.set('n', '<leader>xt', function()
-  local new_config = not vim.diagnostic.config().virtual_lines
-  vim.diagnostic.config({ virtual_lines = new_config })
+    local new_config = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
 -- Close quick fix window after pressing enter
@@ -21,11 +21,8 @@ vim.keymap.set("n", "<CR>", "<CR><Cmd>cclose<CR>",
     { buffer = false, noremap = true, silent = true })
 
 -- Super star search, but don't jump away
--- None of the following seem to work
 Map('n', '*', '*N')
 Map('n', '#', '#N')
--- vim.keymap.set('n', '*', "*``", { desc = 'Select and highlight all matching words' })
--- vim.keymap.set('n', '*', ':let @/ = \'<c-r><c-w>\' \\| set hlsearch<cr>', { silent = true })
 
 -- Better code indenting while in visual mode
 Map('v', '<', '<gv', { desc = 'Indent code left'} )
@@ -46,6 +43,10 @@ vim.keymap.set({'n', 'v'}, '<leader>cp', '"+p<CR>', { desc = 'Paste from system 
 -- Paste without overwriting register
 vim.keymap.set("v", "p", '"_dP')
 
+-- Change without yanking
+vim.keymap.set('n', 'c', '"_c', { noremap = true, silent = true })
+vim.keymap.set('n', 'C', '"_C', { noremap = true, silent = true })
+
 -- Make Y behave like C or D
 vim.keymap.set("n", "Y", "y$")
 
@@ -57,8 +58,6 @@ vim.keymap.set("n", "==", "gg<S-v>G")
 vim.keymap.set("n", "G", "Gzz", { noremap = true, desc = "Go to bottom and center" })
 vim.keymap.set("n", "n", "nzz", { noremap = true })
 vim.keymap.set("n", "N", "Nzz", { noremap = true })
--- vim.keymap.set("n", "*", "*zz", { noremap = true })
--- vim.keymap.set("n", "#", "#zz", { noremap = true })
 vim.keymap.set("n", "g*", "g*zz", { noremap = true })
 vim.keymap.set("n", "g#", "g#zz", { noremap = true })
 
@@ -78,7 +77,7 @@ Map("n", "<S-Tab>", ":bprevious <CR>")			-- Shift+Tab goes to previous buffer
 
 -- Toggle word wrap
 vim.opt.linebreak = true
--- Map("n", "<leader>sw", ":set wrap! <CR>", { desc = "Toggle word wrap" })
+
 -- Lua function to toggle wrap and colorcolumn
 vim.api.nvim_set_keymap('n', '<leader>pw', '', {
     desc = 'Toggle word wrap and colorcolumn',
@@ -103,7 +102,14 @@ vim.keymap.set('n', '<leader>pd', function()
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
 -- Quick fix list related key maps
-vim.keymap.set("n", "q/", ":vimgrep /<C-R>//j %<CR>|:cw<CR>", { noremap = true, silent = true, desc = "Populate quickfix with search results" })
+vim.keymap.set("n", "q/", ":vimgrep /<C-R>//j %<CR>|:cw<CR>",
+    {
+        noremap = true,
+        silent = true,
+        desc = "Populate quickfix with search results"
+    }
+)
+
 Map('n', '<leader>qo', ':copen <CR>', { desc = 'Open quickfix window'})
 Map('n', '<leader>qq', ':cclose <CR>', { desc = 'Close quickfix window'})
 Map('n', '<leader>qn', ':cnext <CR>', { desc = 'Next quick fix item'})
