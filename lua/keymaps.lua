@@ -116,3 +116,4 @@ Map('n', '<leader>qn', ':cnext <CR>', { desc = 'Next quick fix item'})
 Map('n', '<leader>qp', ':cprevious <CR>', { desc = 'Previous quick fix item'})
 Map('n', '<leader>qf', ':Telescope quickfix <CR>', { desc = 'Open quick fix picker'})
 
+Map('n', '<leader>t', ':horizontal terminal <CR>', { desc = 'Open terminal session'})
