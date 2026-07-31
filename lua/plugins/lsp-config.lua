@@ -10,18 +10,18 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = { 'saghen/blink.cmp' },
         config = function()
-            -- local get_intelephense_license = function()
-            --     local f = assert(io.open(os.getenv("HOME") .. "/.config/intelephense/license.txt", "rb"))
-            --     local content = f:read("*a")
-            --     f:close()
-            --     return string.gsub(content, "%s+", "")
-            -- end
-            --
-            -- vim.lsp.config('intelephense', {
-            --     init_options = {
-            --         licenseKey = get_intelephense_license(),
-            --     },
-            -- })
+            local get_intelephense_license = function()
+                local f = assert(io.open(os.getenv("HOME") .. "/.config/intelephense/license.txt", "rb"))
+                local content = f:read("*a")
+                f:close()
+                return string.gsub(content, "%s+", "")
+            end
+
+            vim.lsp.config('intelephense', {
+                init_options = {
+                    licenseKey = get_intelephense_license(),
+                },
+            })
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 desc = "use lsp folding",
