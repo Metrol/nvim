@@ -17,7 +17,24 @@ return {
         branch = "main",
         build = ":TSUpdate",
         event = { "BufReadPost", "BufNewFile" },
+
         config = function()
+            local parsers = {
+                "lua",
+                "vim",
+                "vimdoc",
+                "php",
+                "phpdoc",
+                "twig",
+                "html",
+                "css",
+                "javascript",
+                "typescript",
+                "jsdoc",
+            }
+
+            require("nvim-treesitter").install(parsers)
+
             vim.api.nvim_create_autocmd("FileType", {
                 callback = function(args)
                     local buf = args.buf
