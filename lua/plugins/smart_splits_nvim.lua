@@ -28,7 +28,7 @@ return {
         vim.keymap.set('n', '<A-j>', require('smart-splits').move_cursor_down, { desc = "Move Down Window" } )
         vim.keymap.set('n', '<A-k>', require('smart-splits').move_cursor_up, { desc = "Move Up Window" } )
         vim.keymap.set('n', '<A-l>', require('smart-splits').move_cursor_right, { desc = "Move Right Window" } )
-        vim.keymap.set('n', '<A-\\>', require('smart-splits').move_cursor_previous, { desc = "Move Previous Window" } )
+        vim.keymap.set('n', '<A-\\>', '<C-w>p', { desc = "Move Previous Window" } )
         -- swapping buffers between windows
         vim.keymap.set('n', '<leader>wh', require('smart-splits').swap_buf_left, { desc = "Swap Left Window" } )
         vim.keymap.set('n', '<leader>wj', require('smart-splits').swap_buf_down, { desc = "Swap Down Window" } )
