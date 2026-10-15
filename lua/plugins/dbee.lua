@@ -8,7 +8,7 @@ return {
         dependencies = { "MunifTanjim/nui.nvim" },
         cmd = "Dbee",
         keys = {
-            { "<leader>Do", "<cmd>Dbee open<CR>", desc = "Open database client" },
+            { "<leader>Do", function() require("custom.dbee_buffers").open() end, desc = "Open SQL in database client" },
             { "<leader>Dt", "<cmd>Dbee toggle<CR>", desc = "Toggle database client" },
             { "<leader>Dc", "<cmd>Dbee close<CR>", desc = "Close database client" },
         },

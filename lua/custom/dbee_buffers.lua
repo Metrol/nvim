@@ -63,11 +63,39 @@ function M.connect(bufnr, callback)
             return
         end
         vim.b[bufnr].dbee_connection_id = connection.id
+        dbee.api.ui.editor_attach_buffer(bufnr, connection.id)
         vim.notify("SQL buffer connected to " .. connection.name)
         if callback then
             callback(connection)
+        else
+            dbee.open()
         end
     end)
+end
+
+-- Open the actual project buffer in DBee's editor pane, not a copied query.
+function M.open()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local dbee = require("dbee")
+    if vim.bo[bufnr].filetype ~= "sql" or vim.bo[bufnr].buftype ~= "" then
+        dbee.open()
+        return
+    end
+    local note = dbee.api.ui.editor_search_note_with_buf(bufnr)
+    if note and not note.external then
+        dbee.api.ui.editor_set_current_note(note.id)
+        dbee.open()
+        return
+    end
+    if vim.b[bufnr].dbee_connection_id then
+        local connection = M.activate(bufnr)
+        if connection then
+            dbee.api.ui.editor_attach_buffer(bufnr, connection.id)
+            dbee.open()
+            return
+        end
+    end
+    M.connect(bufnr)
 end
 
 function M.run(selection)
@@ -91,6 +119,7 @@ function M.run(selection)
         local dbee = require("dbee")
         local ok, err = pcall(function()
             dbee.api.core.set_current_connection(connection.id)
+            dbee.api.ui.editor_attach_buffer(bufnr, connection.id)
             local call = dbee.api.core.connection_execute(connection.id, query)
             dbee.api.ui.result_set_call(call)
             dbee.open()
