@@ -23,6 +23,7 @@ return {
         vim.keymap.set('n', '<leader>b', ':Neotree buffers float<CR>', { desc = 'Open Buffers'})
 --        vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>')
         require("neo-tree").setup({
+            close_if_last_window = false,
             filesystem = {
                 follow_current_file = {
                     enabled = true,
@@ -44,9 +45,6 @@ return {
            --         end
            --     }
            -- },
-           {
-               close_if_last_window = true
-           }
         })
     end
 }

@@ -35,7 +35,13 @@ return {
         vim.keymap.set('n', '<leader>wk', require('smart-splits').swap_buf_up, { desc = "Swap Up Window" } )
         vim.keymap.set('n', '<leader>wl', require('smart-splits').swap_buf_right, { desc = "Swap Right Window" } )
         -- Basic window commands
-        vim.keymap.set('n', '<leader>wq', function() vim.cmd [[quit]] end, { desc = 'Close window' })
+        vim.keymap.set('n', '<leader>wq', function()
+            if #vim.api.nvim_tabpage_list_wins(0) == 1 then
+                vim.cmd("quit")
+            else
+                vim.api.nvim_win_close(0, false)
+            end
+        end, { desc = 'Close window' })
         vim.keymap.set('n', '<leader>wo', function() vim.cmd [[on]] end, { desc = 'Close other windows' })
         vim.keymap.set('n', '<leader>wc', '<cmd>bd<CR>', { desc = 'Bufer Close' })
     end,
