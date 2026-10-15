@@ -20,7 +20,7 @@ return {
                 "go", "build", "-C", plugin.dir .. "/dbee",
                 "-o", install_dir .. "/dbee", ".",
             }, {
-                env = { GOTOOLCHAIN = "go1.23.4", CGO_ENABLED = "0" },
+                env = { GOTOOLCHAIN = "local", CGO_ENABLED = "1" },
                 text = true,
             }):wait()
             if result.code ~= 0 then
