@@ -27,7 +27,16 @@ return {
                 error(result.stderr or "DBee backend build failed")
             end
         end,
-        opts = {},
+        opts = function()
+            return {
+                drawer = {
+                    mappings = vim.list_extend(vim.deepcopy(require("dbee.config").default.drawer.mappings), {
+                        { key = "h", mode = "n", action = "collapse" },
+                        { key = "l", mode = "n", action = "expand" },
+                    }),
+                },
+            }
+        end,
         config = function(_, opts)
             vim.fn.mkdir(vim.fn.stdpath("cache") .. "/dbee", "p")
             require("dbee").setup(opts)
