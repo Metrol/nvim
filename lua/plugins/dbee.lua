@@ -11,6 +11,7 @@ return {
             { "<leader>Do", function() require("custom.dbee_buffers").open() end, desc = "Open SQL in database client" },
             { "<leader>Dt", "<cmd>Dbee toggle<CR>", desc = "Toggle database client" },
             { "<leader>Dc", "<cmd>Dbee close<CR>", desc = "Close database client" },
+            { "<leader>Dd", function() require("custom.dbee_layout").toggle_sidebar() end, desc = "Toggle database sidebar" },
         },
         -- Rebuild this checkout rather than downloading an upstream binary.
         build = function(plugin)
@@ -29,6 +30,7 @@ return {
         end,
         opts = function()
             return {
+                window_layout = require("custom.dbee_layout").new(),
                 drawer = {
                     mappings = vim.list_extend(vim.deepcopy(require("dbee.config").default.drawer.mappings), {
                         { key = "h", mode = "n", action = "collapse" },
