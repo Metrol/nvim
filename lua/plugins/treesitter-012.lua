@@ -31,6 +31,7 @@ return {
                 "javascript",
                 "typescript",
                 "jsdoc",
+                "sql",
             }
 
             require("nvim-treesitter").install(parsers)
