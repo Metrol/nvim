@@ -72,17 +72,22 @@ function M.new()
         if self.sidebar_visible then self:show_sidebar() end
         vim.api.nvim_set_current_win(editor)
         self.is_opened = true
+        self:reset()
     end
 
     function layout:reset()
-        if valid(self.windows.result) then
-            vim.api.nvim_win_set_height(self.windows.result, self.result_height)
-        end
+        local available = vim.o.lines - vim.o.cmdheight - 2
+        local result_height = math.max(1, math.min(self.result_height, math.floor(available / 2)))
         if valid(self.windows.drawer) then
             vim.api.nvim_win_set_width(self.windows.drawer, self.drawer_width)
         end
         if valid(self.windows.call_log) then
-            vim.api.nvim_win_set_height(self.windows.call_log, self.call_log_height)
+            local history_height = math.max(1, math.min(self.call_log_height, math.floor((available - result_height) / 3)))
+            vim.api.nvim_win_set_height(self.windows.call_log, history_height)
+        end
+        -- Size results last, after all upper-pane splits have been resized.
+        if valid(self.windows.result) then
+            vim.api.nvim_win_set_height(self.windows.result, result_height)
         end
     end
 

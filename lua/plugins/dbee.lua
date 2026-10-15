@@ -31,7 +31,9 @@ return {
         opts = function()
             return {
                 window_layout = require("custom.dbee_layout").new(),
+                call_log = { window_options = { winfixheight = false } },
                 drawer = {
+                    window_options = { winfixheight = false },
                     mappings = vim.list_extend(vim.deepcopy(require("dbee.config").default.drawer.mappings), {
                         { key = "h", mode = "n", action = "collapse" },
                         { key = "l", mode = "n", action = "expand" },
