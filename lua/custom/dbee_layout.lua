@@ -22,29 +22,19 @@ function M.new()
         self:configure_window_on_switch(self.on_switch, drawer, ui.drawer_show)
         self:configure_window_on_quit(drawer)
 
-        vim.cmd("belowright " .. self.call_log_height .. "split")
-        local history = vim.api.nvim_get_current_win()
-        self.windows.call_log = history
-        ui.call_log_show(history)
-        self:configure_window_on_switch(self.on_switch, history, ui.call_log_show)
-        self:configure_window_on_quit(history)
         self.sidebar_visible = true
         if valid(previous) then vim.api.nvim_set_current_win(previous) end
     end
 
     function layout:hide_sidebar()
-        local drawer, history = self.windows.drawer, self.windows.call_log
+        local drawer = self.windows.drawer
         if valid(drawer) then self.drawer_width = vim.api.nvim_win_get_width(drawer) end
-        if valid(history) then self.call_log_height = vim.api.nvim_win_get_height(history) end
         local current = vim.api.nvim_get_current_win()
-        if current == drawer or current == history then
+        if current == drawer then
             vim.api.nvim_set_current_win(self.windows.editor)
         end
-        for _, name in ipairs({ "call_log", "drawer" }) do
-            local win = self.windows[name]
-            if valid(win) then vim.api.nvim_win_close(win, false) end
-            self.windows[name] = nil
-        end
+        if valid(drawer) then vim.api.nvim_win_close(drawer, false) end
+        self.windows.drawer = nil
         self.sidebar_visible = false
     end
 
@@ -80,10 +70,6 @@ function M.new()
         local result_height = math.max(1, math.min(self.result_height, math.floor(available / 2)))
         if valid(self.windows.drawer) then
             vim.api.nvim_win_set_width(self.windows.drawer, self.drawer_width)
-        end
-        if valid(self.windows.call_log) then
-            local history_height = math.max(1, math.min(self.call_log_height, math.floor((available - result_height) / 3)))
-            vim.api.nvim_win_set_height(self.windows.call_log, history_height)
         end
         -- Size results last, after all upper-pane splits have been resized.
         if valid(self.windows.result) then
