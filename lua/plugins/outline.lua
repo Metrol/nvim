@@ -2,7 +2,7 @@
 -- Outline
 --
 -- A sidebar with a tree-like outline of symbols from your code, powered by
--- LSP.
+-- LSP, with a Tree-sitter provider for SQL CTEs.
 --
 -- https://github.com/hedyhli/outline.nvim
 --
@@ -12,6 +12,9 @@ return {
     config = function()
         vim.keymap.set("n", "<leader>o", "<cmd>OutlineOpen<CR>", { desc = "Open Code Outline" })
         require('outline').setup({
+            providers = {
+                priority = { 'sql', 'lsp', 'coc', 'markdown', 'norg', 'man' },
+            },
             outline_window = {
                 auto_close = true,
             },
