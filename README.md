@@ -30,6 +30,17 @@ sudo apt install ripgrep npm
 
 To get things looking right, [Nerd Fonts](https://www.nerdfonts.com/) are required.  I went to the [download page](https://www.nerdfonts.com/font-downloads) and fetched `JetBrainsMono Nerd Font`.  I didn't install all of those fonts in the package, just the regular ones.  Then, whatever terminal program your using needs to be using that font.  Any plugin that's calling out a dependency on `"nvim-tree/nvim-web-devicons"` will need a nerd font in place.
 # Plugins
+## Moving DBee to another machine
+
+The `dbee` branch installs `Metrol/nvim-dbee` from a pinned release through lazy.nvim.
+On Linux x86-64, its backend is downloaded and checksum-verified automatically; no Go compiler,
+build tools, or `~/Projects/nvim-dbee` checkout is needed. The installer uses curl (or wget), tar,
+and sha256sum. Other platforms still require a source build.
+
+After pulling this configuration on another machine, open Neovim and let lazy.nvim install the
+plugins. To retry just the DBee download, run `:Lazy build nvim-dbee`. Set up connection settings
+and `.pgpass` separately; database credentials are not stored in this repository.
+
 The order of these plugins tracks on the videos that [typecraft](https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn) presented in his video series.  I've since added a few to the mix, and will likely continue to do so, while tweaking things into place.
 
 Likely, the most important plugin is the tool that manages all the other plugins.

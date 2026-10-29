@@ -1,9 +1,9 @@
--- DBee uses the local development checkout and its compiled Go backend.
+-- DBee downloads the backend matching its pinned release; no local build is needed.
 -- SQL completion uses nvim-cmp; Blink handles other filetypes.
 return {
     {
         "Metrol/nvim-dbee",
-        dir = vim.fn.expand("~/Projects/nvim-dbee"),
+        tag = "v0.2.0-metrol.1",
         main = "dbee",
         dependencies = { "MunifTanjim/nui.nvim" },
         cmd = "Dbee",
@@ -13,20 +13,8 @@ return {
             { "<leader>Dc", "<cmd>Dbee close<CR>", desc = "Close database client" },
             { "<leader>Dd", function() require("custom.dbee_layout").toggle_sidebar() end, desc = "Toggle database sidebar" },
         },
-        -- Rebuild this checkout rather than downloading an upstream binary.
-        build = function(plugin)
-            local install_dir = vim.fn.stdpath("data") .. "/dbee/bin"
-            vim.fn.mkdir(install_dir, "p")
-            local result = vim.system({
-                "go", "build", "-C", plugin.dir .. "/dbee",
-                "-o", install_dir .. "/dbee", ".",
-            }, {
-                env = { GOTOOLCHAIN = "local", CGO_ENABLED = "1" },
-                text = true,
-            }):wait()
-            if result.code ~= 0 then
-                error(result.stderr or "DBee backend build failed")
-            end
+        build = function()
+            require("dbee").install()
         end,
         opts = function()
             return {
