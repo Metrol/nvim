@@ -13,6 +13,7 @@ return {
     config = function()
         require('themify').setup({
             'xiantang/darcula-dark.nvim',
+            'ribru17/bamboo.nvim',
             'catppuccin/nvim',
             'folke/tokyonight.nvim',
             'rebelot/kanagawa.nvim',
