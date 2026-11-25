@@ -177,12 +177,21 @@ function M.insert_file_from_snippets()
         return
     end
 
+    local fd = vim.fn.exepath("fd")
+    if fd == "" then
+        fd = vim.fn.exepath("fdfind")
+    end
+    if fd == "" then
+        vim.notify("Install fd (fdfind on Debian and Ubuntu) to search project snippets", vim.log.levels.ERROR)
+        return
+    end
+
     local snippets_dir = root .. "/snippets"
     local previewers = require("telescope.previewers")
 
     -- Use fd to find matching extension files
     Job:new({
-        command = "fdfind",
+        command = fd,
         args = { "--type", "f", "--extension", ext },
         cwd = snippets_dir,
         on_exit = function(j)
